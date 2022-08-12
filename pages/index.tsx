@@ -28,7 +28,7 @@ export default function Home() {
             <Container>
                 <Title>Pensamentos</Title>
                 <ContainerThoughts>
-                    {thoughts.map(thought => <Thought thought={thought}/>)}
+                    {thoughts.map((thought, index) => <Thought key={index} thought={thought}/>)}
                 </ContainerThoughts>
             </Container>
         </>
