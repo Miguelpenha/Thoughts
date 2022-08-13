@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 import ModalNotStyled from 'react-modal'
 
 export const Container = styled.div`
@@ -19,6 +19,18 @@ export const ContainerThoughts = styled.main`
     grid-template-columns: repeat(3, 1fr);
 `
 
+const show = keyframes`
+    0% {
+        opacity: 20%;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+`
+
 export const Modal = styled(ModalNotStyled)`
     width: 60%;
     height: 60%;
@@ -26,12 +38,16 @@ export const Modal = styled(ModalNotStyled)`
     outline: none;
     display: flex;
     padding: 1.5%;
-    border-radius: 10px;
+    border-radius: 15px;
     flex-direction: column;
     transition-duration: 0.1s;
     transition-timing-function: linear;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: ${props => props.theme.backgroundColor};
+
+    ${props => props.isOpen && css`
+        animation: ${show} 0.5s;
+    `}
 `
 
 export const ContainerAuthor = styled.a`

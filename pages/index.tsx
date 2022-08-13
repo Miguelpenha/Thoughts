@@ -6,6 +6,7 @@ import Thought from '../components/Thought'
 import { useState } from 'react'
 import Link from 'next/link'
 
+
 export default function Home() {
     const { data: thoughts } = api<IThought[]>('/api/thoughts')
     const [openModal, setOpenModal] = useState<IThought | null>(null)
