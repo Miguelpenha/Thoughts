@@ -45,6 +45,7 @@ export const Tags = styled.ul`
     display: flex;
     margin-top: 5%;
     list-style: none;
+    margin-right: 50%;
 `
 
 export const ContainerTag = styled.a`

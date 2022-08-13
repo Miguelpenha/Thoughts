@@ -3,7 +3,8 @@ import { FC } from 'react'
 import { Container, Author, Text, Tags, ContainerTag, Tag } from './style'
 import limitText from '../../utils/limitText'
 import Link from 'next/link'
-import Skeleton from 'react-content-loader'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface Iprops {
     thought: IThought
@@ -11,43 +12,35 @@ interface Iprops {
 }
 
 const Thought: FC<Iprops> = ({ thought, onClick }) => {
-    if (thought) {
-        return (
+    return (
+        <SkeletonTheme baseColor="#c7c7c7" highlightColor="#9a9a9a">
             <Container onClick={() => onClick()}>
-                <Link href={`authors/${thought.author}`} passHref>
-                    <Author>{thought.author}</Author>
-                </Link>
-                <Text>{limitText(thought.text, 100)}</Text>
+                {thought.author ? (
+                    <Link href={`authors/${thought.author}`} passHref>
+                        <Author>{thought.author}</Author>
+                    </Link>
+                ) : (
+                    <Skeleton height={20} style={{width: '45%', marginBottom: '8%'}}/>
+                )}
+                <Text>{limitText(thought.text, 100) || <Skeleton height={12} count={3}/>}</Text>
                 <Tags>
-                    {thought.tags && thought.tags.map(tag => (
-                        <Link href={`tags/${tag}`} passHref>
+                    {thought.tags ? thought.tags.map((tag, index) => (
+                        <Link key={index} href={`tags/${tag}`} passHref>
                             <ContainerTag>
                                 <Tag>#{tag}</Tag>
                             </ContainerTag>
                         </Link>
-                    ))}
+                    )) : (
+                        <div>
+                            <Skeleton inline={true} height={20} style={{width: '28%', marginRight: '5%'}}/>
+                            <Skeleton inline={true} height={20} style={{width: '28%', marginRight: '5%'}}/>
+                            <Skeleton inline={true} height={20} style={{width: '28%', marginRight: '5%'}}/>
+                        </div>
+                    )}
                 </Tags>
             </Container>
-        )
-    } else {
-        return (
-            <Skeleton 
-                speed={2}
-                width={476}
-                height={124}
-                viewBox="-100 0 476 124"
-                backgroundColor="#d4d4d4"
-                foregroundColor="#a3a3a3"
-            >
-                <rect x="0" y="5" rx="5" ry="5" width="68" height="19" /> 
-                <rect x="0" y="35" rx="5" ry="5" width="198" height="13" /> 
-                <rect x="0" y="58" rx="5" ry="5" width="169" height="13" /> 
-                <rect x="0" y="84" rx="5" ry="5" width="49" height="14" /> 
-                <rect x="60" y="84" rx="5" ry="5" width="49" height="14" /> 
-                <rect x="120" y="84" rx="5" ry="5" width="49" height="14" />
-            </Skeleton>
-        )
-    }
+        </SkeletonTheme>
+    )
 }
 
 export default Thought

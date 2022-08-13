@@ -46,8 +46,8 @@ export default function Home() {
                         </Link>
                         <Text>{openModal?.text}</Text>
                         <Tags>
-                            {openModal?.tags && openModal?.tags.map(tag => (
-                                <Link href={`tags/${tag}`} passHref>
+                            {openModal?.tags && openModal?.tags.map((tag, index) => (
+                                <Link key={index} href={`tags/${tag}`} passHref>
                                     <ContainerTag>
                                         <Tag>#{tag}</Tag>
                                     </ContainerTag>
