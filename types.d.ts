@@ -13,15 +13,9 @@ export interface ICreated {
     system: Date
 }
 
-export interface ITag {
-    name: string
-    count: number
-    created: ICreated
-}
-
 export interface IThought {
     text: string
     author: string
-    tags?: ITag[]
+    tags?: String[]
     created?: ICreated
 }

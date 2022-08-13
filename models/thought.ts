@@ -5,10 +5,7 @@ import created from './schemasPatterns/created'
 const schema = new mongoose.Schema<IThought>({
     author: String,
     text: String,
-    tags: {
-        type: [String],
-        ref: 'tag'
-    },
+    tags: [String],
     created
 })
 
