@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    padding: 3%;
+    padding: 4%;
     margin: auto;
     display: flex;
     max-width: 80%;
@@ -20,10 +20,36 @@ export const Container = styled.div`
 `
 
 export const Author = styled.span`
+    font-size: 0.9vw;
     font-weight: bold;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
 `
 
 export const Text = styled.span`
-    
+    font-size: 1.2vw;
+`
+
+export const Tags = styled.ul`
+    display: flex;
+    margin-top: 5%;
+    list-style: none;
+`
+
+export const ContainerTag = styled.a`
+    padding: 2%;
+    margin-right: 2%;
+    border-radius: 5px;
+    text-decoration: none;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+    color: ${props => props.theme.color};
+
+    :hover {
+        color: ${props => props.theme.backgroundColor};
+        background-color: ${props => props.theme.color};
+    }
+`
+
+export const Tag = styled.li`
+    font-size: 1vw;
 `
