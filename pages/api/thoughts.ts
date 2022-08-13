@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import thoughtsModel from '../../../models/thought'
-import connectDB from '../../../services/connectDB'
+import thoughtsModel from '../../models/thought'
+import connectDB from '../../services/connectDB'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'GET') {

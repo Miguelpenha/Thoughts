@@ -19,10 +19,22 @@ export const Container = styled.div`
     }
 `
 
-export const Author = styled.span`
+export const Author = styled.a`
+    padding: 2%;
     font-size: 0.9vw;
     font-weight: bold;
     margin-bottom: 2%;
+    border-radius: 5px;
+    width: fit-content;
+    text-decoration: none;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+    color: ${props => props.theme.color};
+
+    :hover {
+        color: ${props => props.theme.backgroundColor};
+        background-color: ${props => props.theme.color};
+    }
 `
 
 export const Text = styled.span`

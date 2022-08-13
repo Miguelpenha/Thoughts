@@ -19,3 +19,13 @@ export interface IThought {
     tags?: String[]
     created?: ICreated
 }
+
+interface IAuthor {
+    name: string
+    thoughtCount: number
+}
+
+interface ITag {
+    name: string
+    count: number
+}

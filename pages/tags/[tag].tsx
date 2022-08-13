@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
+import api from '../../services/api'
+import { ITag } from '../../types'
 import Head from 'next/head'
-import { Container, Title } from '../../styles/pages/tags/tag'
+import { Container, Title, Count } from '../../styles/pages/tags/tag'
 
 interface IQuery {
     tag?: string
@@ -8,16 +10,18 @@ interface IQuery {
 
 function Tag() {
     const router = useRouter()
-    const { tag } = router.query as IQuery
+    const { tag: tagName } = router.query as IQuery
+    const { data: tag } = api<ITag>(`/api/tags/${tagName}`)
 
     return (
         <>
             <Head>
                 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
-                <title>Tag {tag}</title>
+                <title>Tag {tag?.name}</title>
             </Head>
             <Container>
-                <Title>{tag}</Title>
+                <Title>{tag?.name}</Title>
+                <Count>{tag?.count}</Count>
             </Container>
         </>
     )

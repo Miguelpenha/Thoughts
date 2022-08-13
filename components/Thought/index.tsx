@@ -6,12 +6,15 @@ import Link from 'next/link'
 
 interface Iprops {
     thought: IThought
+    onClick: Function
 }
 
-const Thought: FC<Iprops> = ({ thought }) => {
+const Thought: FC<Iprops> = ({ thought, onClick }) => {
     return (
-        <Container>
-            <Author>{thought.author}</Author>
+        <Container onClick={() => onClick()}>
+            <Link href={`authors/${thought.author}`} passHref>
+                <Author>{thought.author}</Author>
+            </Link>
             <Text>{limitText(thought.text, 100)}</Text>
             <Tags>
                 {thought.tags && thought.tags.map(tag => (
