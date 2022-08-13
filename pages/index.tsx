@@ -1,8 +1,8 @@
+import api from '../services/api'
 import { IThought } from '../types'
 import Head from 'next/head'
 import { Container, Title, ContainerThoughts } from '../styles/pages'
 import Thought from '../components/Thought'
-import api from '../services/api'
 
 export default function Home() {
     const { data: thoughts } = api<IThought[]>('/api/thoughts')
