@@ -6,10 +6,12 @@ import Thought from '../components/Thought'
 import { useState } from 'react'
 import Link from 'next/link'
 import Loading from '../components/Loading'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Home() {
     const { data: thoughts } = api<IThought[]>('/api/thoughts')
     const [openModal, setOpenModal] = useState<IThought | null>(null)
+    const [parent] = useAutoAnimate<HTMLElement>()
 
     return (
         <>
@@ -18,7 +20,7 @@ export default function Home() {
             </Head>
             <Container>
                 <Title>Pensamentos</Title>
-                <ContainerThoughts>
+                <ContainerThoughts ref={parent}>
                     {thoughts ? thoughts.map((thought, index) => <Thought onClick={() => setOpenModal(thought)} key={index} thought={thought}/>) : <Loading/>}
                     <Modal
                         isOpen={openModal ? true : false}
