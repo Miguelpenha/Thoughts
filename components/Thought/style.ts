@@ -49,8 +49,8 @@ export const Tags = styled.ul`
 `
 
 export const ContainerTag = styled.a`
-    padding: 2%;
-    margin-right: 2%;
+    padding: 3%;
+    margin-right: 3%;
     border-radius: 5px;
     text-decoration: none;
     transition-duration: 0.1s;
