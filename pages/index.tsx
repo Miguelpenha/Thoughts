@@ -5,6 +5,7 @@ import { Container, Title, ContainerThoughts, Modal, ContainerAuthor, IconAuthor
 import Thought from '../components/Thought'
 import { useState } from 'react'
 import Link from 'next/link'
+import Loading from '../components/Loading'
 
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
             <Container>
                 <Title>Pensamentos</Title>
                 <ContainerThoughts>
-                    {thoughts && thoughts.map((thought, index) => <Thought onClick={() => setOpenModal(thought)} key={index} thought={thought}/>)}
+                    {thoughts ? thoughts.map((thought, index) => <Thought onClick={() => setOpenModal(thought)} key={index} thought={thought}/>) : <Loading/>}
                     <Modal
                         isOpen={openModal ? true : false}
                         onRequestClose={() => setOpenModal(null)}
