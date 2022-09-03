@@ -14,10 +14,18 @@ interface Iprops {
 const Thought: FC<Iprops> = ({ thought, onClick }) => {
     return (
         <SkeletonTheme baseColor="#c7c7c7" highlightColor="#9a9a9a">
-            <Container onClick={() => onClick()}>
+            <Container onClick={ev => {
+                ev.stopPropagation()
+                ev.cancelable = true
+
+                onClick()
+            }}>
                 {thought.author ? (
                     <Link href={`authors/${thought.author}`} passHref>
-                        <Author>{thought.author}</Author>
+                        <Author onClick={ev => {
+                                ev.stopPropagation()
+                                ev.cancelable = true
+                            }}>{thought.author}</Author>
                     </Link>
                 ) : (
                     <Skeleton height={20} style={{width: '45%', marginBottom: '8%'}}/>
@@ -26,7 +34,10 @@ const Thought: FC<Iprops> = ({ thought, onClick }) => {
                 <Tags>
                     {thought.tags ? thought.tags.map((tag, index) => (
                         <Link key={index} href={`tags/${tag}`} passHref>
-                            <ContainerTag>
+                            <ContainerTag onClick={ev => {
+                                ev.stopPropagation()
+                                ev.cancelable = true
+                            }}>
                                 <Tag>#{tag}</Tag>
                             </ContainerTag>
                         </Link>
