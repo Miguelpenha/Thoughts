@@ -16,6 +16,7 @@ export const Container = styled.div`
 
     :hover {
         transform: scale(1);
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 16px 0px;
     }
 `
 
@@ -27,7 +28,7 @@ export const Author = styled.a`
     border-radius: 5px;
     width: fit-content;
     text-decoration: none;
-    transition-duration: 0.1s;
+    transition-duration: 0.15s;
     transition-timing-function: linear;
     color: ${props => props.theme.color};
 
@@ -53,7 +54,7 @@ export const ContainerTag = styled.a`
     margin-right: 3%;
     border-radius: 5px;
     text-decoration: none;
-    transition-duration: 0.1s;
+    transition-duration: 0.15s;
     transition-timing-function: linear;
     color: ${props => props.theme.color};
 

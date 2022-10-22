@@ -1,9 +1,9 @@
 import { IThought } from '../../../../types'
 import { FC } from 'react'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Container, Author, Text, Tags, ContainerTag, Tag } from './style'
 import limitText from '../../../../utils/limitText'
 import Link from 'next/link'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 interface Iprops {
@@ -23,9 +23,9 @@ const Thought: FC<Iprops> = ({ thought, onClick }) => {
                 {thought.author ? (
                     <Link href={`authors/${thought.author}`} passHref>
                         <Author onClick={ev => {
-                                ev.stopPropagation()
-                                ev.cancelable = true
-                            }}>{thought.author}</Author>
+                            ev.stopPropagation()
+                            ev.cancelable = true
+                        }}>{thought.author}</Author>
                     </Link>
                 ) : (
                     <Skeleton height={20} style={{width: '45%', marginBottom: '8%'}}/>

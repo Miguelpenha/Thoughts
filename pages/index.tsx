@@ -1,18 +1,18 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import api from '../services/api'
 import { IThought } from '../types'
+import { useState } from 'react'
 import Head from 'next/head'
 import { Container, Title, ContainerThoughts } from '../styles/pages'
 import Thought from '../components/pages/Home/Thought'
-import { useState } from 'react'
 import Loading from '../components/Loading'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Modal from '../components/pages/Home/Modal'
 
 export default function Home() {
+    const [parent] = useAutoAnimate<HTMLElement>()
     const { data: thoughts } = api<IThought[]>('/api/thoughts')
     const [openModal, setOpenModal] = useState(false)
     const [thought, setThought] = useState<IThought>()
-    const [parent] = useAutoAnimate<HTMLElement>()
 
     return (
         <>

@@ -22,7 +22,7 @@ export const Modal = styled(ModalNotStyled)`
     padding: 1.5%;
     border-radius: 15px;
     flex-direction: column;
-    transition-duration: 0.1s;
+    transition-duration: 0.15s;
     transition-timing-function: linear;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: ${props => props.theme.backgroundColor};
@@ -40,7 +40,7 @@ export const ContainerAuthor = styled.a`
     align-items: center;
     border-radius: 15px;
     text-decoration: none;
-    transition-duration: 0.1s;
+    transition-duration: 0.15s;
     transition-timing-function: linear;
     color: ${props => props.theme.color};
     
@@ -83,7 +83,7 @@ export const ContainerTag = styled.a`
     margin-right: 2%;
     border-radius: 10px;
     text-decoration: none;
-    transition-duration: 0.1s;
+    transition-duration: 0.15s;
     transition-timing-function: linear;
     color: ${props => props.theme.color};
 
