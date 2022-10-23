@@ -1,8 +1,8 @@
-import { IThought } from '../../../../types'
+import { IThought } from '../../types'
 import { FC } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Container, Author, Text, Tags, ContainerTag, Tag } from './style'
-import limitText from '../../../../utils/limitText'
+import limitText from '../../utils/limitText'
 import Link from 'next/link'
 import 'react-loading-skeleton/dist/skeleton.css'
 

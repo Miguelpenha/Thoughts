@@ -1,5 +1,5 @@
 import { FC, Dispatch, SetStateAction } from 'react'
-import { IThought } from '../../../../types'
+import { IThought } from '../../types'
 import { Modal, ContainerAuthor, IconAuthor, Author, Text, Tags, ContainerTag, Tag } from './style'
 import Link from 'next/link'
 
@@ -9,7 +9,7 @@ interface Iprops {
     setOpenModal: Dispatch<SetStateAction<boolean>>
 }
 
-const Thought: FC<Iprops> = ({ openModal, setOpenModal, thought }) => {
+const ModalThought: FC<Iprops> = ({ openModal, setOpenModal, thought }) => {
     if (thought) {
         return (
             <Modal
@@ -52,4 +52,4 @@ const Thought: FC<Iprops> = ({ openModal, setOpenModal, thought }) => {
     }
 }
 
-export default Thought
+export default ModalThought

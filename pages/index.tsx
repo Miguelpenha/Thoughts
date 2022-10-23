@@ -4,9 +4,9 @@ import { IThought } from '../types'
 import { useState } from 'react'
 import Head from 'next/head'
 import { Container, Title, ContainerThoughts } from '../styles/pages'
-import Thought from '../components/pages/Home/Thought'
+import Thought from '../components/Thought'
 import Loading from '../components/Loading'
-import Modal from '../components/pages/Home/Modal'
+import ModalThought from '../components/ModalThought'
 
 export default function Home() {
     const [parent] = useAutoAnimate<HTMLElement>()
@@ -29,7 +29,7 @@ export default function Home() {
                         }}/>
                     )) : <Loading/>}
                 </ContainerThoughts>
-                <Modal thought={thought} openModal={openModal} setOpenModal={setOpenModal}/>
+                <ModalThought thought={thought} openModal={openModal} setOpenModal={setOpenModal}/>
             </Container>
         </>
     )
