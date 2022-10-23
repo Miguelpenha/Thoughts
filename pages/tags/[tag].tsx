@@ -21,7 +21,7 @@ function Tag() {
             </Head>
             <Container>
                 <Title>{tag?.name}</Title>
-                <Count>{tag?.count}</Count>
+                <Count>Pensamentos usando essa tag {tag?.count}</Count>
             </Container>
         </>
     )

@@ -57,11 +57,6 @@ export const ContainerAuthor = styled.a`
     }
 `
 
-export const IconAuthor = styled.svg`
-    width: 22%;
-    fill: ${props => props.theme.color};
-`
-
 export const Author = styled.span`
     margin-left: 2%;
 `
