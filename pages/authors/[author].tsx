@@ -21,7 +21,7 @@ function Author() {
             </Head>
             <Container>
                 <Title>{author?.name}</Title>
-                <Count>{author?.thoughtCount}</Count>
+                <Count>Pensamentos desse autor {author?.thoughtCount}</Count>
             </Container>
         </>
     )
