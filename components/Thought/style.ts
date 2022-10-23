@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    padding: 4%;
-    margin: auto;
+    margin: 1rem;
+    width: 360px;
+    padding: 1rem;
     display: flex;
-    max-width: 80%;
     cursor: pointer;
-    width: fit-content;
     border-radius: 10px;
     transform: scale(0.95);
     flex-direction: column;
@@ -22,7 +21,7 @@ export const Container = styled.div`
 
 export const Author = styled.a`
     padding: 2%;
-    font-size: 0.9vw;
+    font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 2%;
     border-radius: 5px;
@@ -39,7 +38,7 @@ export const Author = styled.a`
 `
 
 export const Text = styled.span`
-    font-size: 1.2vw;
+    font-size: 1.2rem;
 `
 
 export const Tags = styled.ul`
@@ -65,5 +64,5 @@ export const ContainerTag = styled.a`
 `
 
 export const Tag = styled.li`
-    font-size: 1vw;
+    font-size: 1rem;
 `

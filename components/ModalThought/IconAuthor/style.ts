@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.svg`
-    width: 22%;
+    margin: 3%;
+    width: 1.8rem;
     fill: ${props => props.theme.color};
 `

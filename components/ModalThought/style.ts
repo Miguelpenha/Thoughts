@@ -14,7 +14,7 @@ const show = keyframes`
 `
 
 export const Modal = styled(ModalNotStyled)`
-    width: 60%;
+    width: 80vw;
     height: 60%;
     margin: auto;
     outline: none;
@@ -33,7 +33,7 @@ export const Modal = styled(ModalNotStyled)`
 `
 
 export const ContainerAuthor = styled.a`
-    width: 20%;
+    width: 9rem;
     display: flex;
     padding: 0.5%;
     cursor: pointer;
@@ -58,12 +58,14 @@ export const ContainerAuthor = styled.a`
 `
 
 export const Author = styled.span`
-    margin-left: 2%;
+    font-size: 1rem;
+    margin-left: 0.2rem;
 `
 
 export const Text = styled.span`
-    margin-top: 5%;
-    font-size: 1.5vw;
+    padding: 2%;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 `
 
 export const Tags = styled.ul`
@@ -74,9 +76,9 @@ export const Tags = styled.ul`
 `
 
 export const ContainerTag = styled.a`
-    padding: 1%;
-    margin-right: 2%;
+    padding: 0.5rem;
     border-radius: 10px;
+    margin-right: 0.5rem;
     text-decoration: none;
     transition-duration: 0.15s;
     transition-timing-function: linear;
@@ -89,5 +91,5 @@ export const ContainerTag = styled.a`
 `
 
 export const Tag = styled.li`
-    font-size: 1vw;
+    font-size: 1rem;
 `

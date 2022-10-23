@@ -15,6 +15,7 @@ const ModalThought: FC<Iprops> = ({ thought, openModal, setOpenModal }) => {
         return (
             <Modal
                 isOpen={openModal}
+                ariaHideApp={false}
                 onRequestClose={() => setOpenModal(false)}
                 style={{
                     overlay: { display: 'flex', backgroundColor: 'rgba(0, 0, 0, 0.1)' }

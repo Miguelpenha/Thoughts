@@ -7,13 +7,14 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
-    margin-top: 4%;
-    font-size: 2.5vw;
+    margin-top: 5%;
+    font-size: 2.5rem;
     text-align: center;
 `
 
 export const ContainerThoughts = styled.main`
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 5%;
-    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
 `

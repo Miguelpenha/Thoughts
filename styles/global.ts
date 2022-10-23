@@ -24,6 +24,10 @@ export default createGlobalStyle`
         }
     }
 
+    *::selection {
+        background-color: ${props => props.theme.secondary};
+    }
+
     body {
         color: ${props => props.theme.color};
         background-color: ${props => props.theme.backgroundColor};
