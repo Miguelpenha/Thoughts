@@ -31,7 +31,7 @@ function Author() {
             </Head>
             <Container>
                 <ButtonBack/>
-                {thoughts && author ? <>
+                {thoughts && authorName ? <>
                     <Title>{author?.name}</Title>
                     <Count>{author?.thoughtCount} pensamento{author?.thoughtCount !== 1 && 's'} desse autor</Count>
                     <ContainerThoughts ref={parent}>
