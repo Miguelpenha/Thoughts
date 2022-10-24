@@ -8,13 +8,14 @@ interface IQuery {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+    console.log('asd')
     if (req.method === 'GET') {
         await connectDB()
 
         const { tag: tagName } = req.query as unknown as IQuery
         const thoughts: IThought[] = await thoughtsModel.find()
         let tag: ITag | null = null
-    
+        
         thoughts.map(thought => {
             thought.tags && thought.tags.map(tagOrigin => {
                 if (tagOrigin.toUpperCase() === tagName.toUpperCase()) {
