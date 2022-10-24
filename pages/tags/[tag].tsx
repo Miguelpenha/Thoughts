@@ -17,9 +17,8 @@ interface IQuery {
 function Tag() {
     const router = useRouter()
     const { tag: tagName } = router.query as IQuery
-    const { data: tag } = api<ITag>(`/api/tags/${tagName}`)
+    const { data } = api<{tag: ITag, thoughts: IThought[]}>(`/api/tags/${tagName}`)
     const [parent] = useAutoAnimate<HTMLElement>()
-    const { data: thoughts } = api<IThought[]>(`/api/thoughts?tag=${tagName}`)
     const [openModal, setOpenModal] = useState(false)
     const [thought, setThought] = useState<IThought>()
 
@@ -27,15 +26,15 @@ function Tag() {
         <>
             <Head>
                 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
-                <title>Author {tag?.name}</title>
+                <title>Author {data?.tag.name}</title>
             </Head>
             <Container>
                 <ButtonBack/>
-                {thoughts && tag ? <>
-                    <Title>{tag?.name}</Title>
-                    <Count>{tag?.count} pensamento{tag?.count !== 1 && 's'} nessa tag</Count>
+                {data?.thoughts && data?.tag ? <>
+                    <Title>{data?.tag.name}</Title>
+                    <Count>{data?.tag.count} pensamento{data?.tag.count !== 1 && 's'} nessa tag</Count>
                     <ContainerThoughts ref={parent}>
-                        {thoughts.map((thought, index) => (
+                        {data?.thoughts.map((thought, index) => (
                             <Thought key={index} thought={thought} onClick={() => {
                                 setOpenModal(true)
                                 setThought(thought)

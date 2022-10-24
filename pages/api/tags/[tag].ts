@@ -13,6 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const { tag: tagName } = req.query as unknown as IQuery
         const thoughts: IThought[] = await thoughtsModel.find()
+        const thoughtsSelect: IThought[] = []
         let tag: ITag | null = null
     
         thoughts.map(thought => {
@@ -26,11 +27,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     } else {
                         tag.count++
                     }
+
+                    thoughtsSelect.push(thought)
                 }
             })
         })
 
-        res.json(tag ? tag : { notFound: true })
+        res.json(tag ? { tag, thoughts: thoughtsSelect } : { notFound: true })
     } else {
         res.status(404).end()
     }
