@@ -31,7 +31,7 @@ function Tag() {
             </Head>
             <Container>
                 <ButtonBack/>
-                {thoughts && tag ? <>
+                {thoughts && tagName ? <>
                     <Title>{tag?.name}</Title>
                     <Count>{tag?.count} pensamento{tag?.count !== 1 && 's'} nessa tag</Count>
                     <ContainerThoughts ref={parent}>
