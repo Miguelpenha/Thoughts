@@ -17,7 +17,7 @@ const Thought: FC<Iprops> = ({ onClick, thought }) => {
 
             onClick()
         }}>
-            <Link href={`authors/${thought.author}`} passHref>
+            <Link href={`/authors/${thought.author}`} passHref>
                 <Author onClick={ev => {
                     ev.stopPropagation()
                     ev.cancelable = true
@@ -26,7 +26,7 @@ const Thought: FC<Iprops> = ({ onClick, thought }) => {
             <Text>{limitText(thought.text, 100)}</Text>
             <Tags>
                 {thought && thought.tags && thought.tags.map((tag, index) => (
-                    <Link key={index} href={`tags/${tag}`} passHref>
+                    <Link key={index} href={`/tags/${tag}`} passHref>
                         <ContainerTag onClick={ev => {
                             ev.stopPropagation()
                             ev.cancelable = true

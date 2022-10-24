@@ -45,13 +45,13 @@ export const Tags = styled.ul`
     display: flex;
     margin-top: 5%;
     list-style: none;
-    margin-right: 50%;
+    margin-left: -3%;
 `
 
 export const ContainerTag = styled.a`
-    padding: 3%;
+    padding: 2.5%;
     margin-right: 3%;
-    border-radius: 5px;
+    border-radius: 10px;
     text-decoration: none;
     transition-duration: 0.15s;
     transition-timing-function: linear;
