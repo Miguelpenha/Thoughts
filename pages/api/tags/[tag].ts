@@ -8,30 +8,26 @@ interface IQuery {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.method === 'GET') {
-        await connectDB()
+    await connectDB()
 
-        const { tag: tagName } = req.query as unknown as IQuery
-        const thoughts: IThought[] = await thoughtsModel.find()
-        let tag: ITag | null = null
-    
-        thoughts.map(thought => {
-            thought.tags && thought.tags.map(tagOrigin => {
-                if (tagOrigin.toUpperCase() === tagName.toUpperCase()) {
-                    if (!tag) {
-                        tag = {
-                            name: String(tagOrigin),
-                            count: 1
-                        }
-                    } else {
-                        tag.count++
+    const { tag: tagName } = req.query as unknown as IQuery
+    const thoughts: IThought[] = await thoughtsModel.find()
+    let tag: ITag | null = null
+
+    thoughts.map(thought => {
+        thought.tags && thought.tags.map(tagOrigin => {
+            if (tagOrigin.toUpperCase() === tagName.toUpperCase()) {
+                if (!tag) {
+                    tag = {
+                        name: String(tagOrigin),
+                        count: 1
                     }
+                } else {
+                    tag.count++
                 }
-            })
+            }
         })
+    })
 
-        res.json(tag ? tag : { notFound: true })
-    } else {
-        res.status(404).end()
-    }
+    res.json(tag ? tag : { notFound: true })
 }
