@@ -21,8 +21,8 @@
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.3",
     "axios": "^0.27.2",
-    "mongoose": "^6.7.1",
-    "next": "^12.3.2",
+    "mongoose": "^6.7.2",
+    "next": "^12.3.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-modal": "^3.16.1",
@@ -38,6 +38,6 @@
     "@types/react-dom": "^17.0.18",
     "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.25",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   }
 }
