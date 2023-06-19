@@ -2,6 +2,7 @@ import { ConfigContext, ExpoConfig } from 'expo/config'
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
+  owner: 'miguelpenha',
   scheme: 'thoughts',
   name: 'Thoughts',
   slug: 'Thoughts',
@@ -36,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     ...process.env,
     eas: {
-      projectId: ''
+      projectId: 'b2972ba3-acee-4262-92ff-1bb709c8ba94'
     }
   },
   runtimeVersion: {
