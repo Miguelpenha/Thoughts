@@ -47,4 +47,4 @@ jobs:
         run: eas build --profile main --platform android --no-wait --non-interactive
 
       - name: Create update android
-        run: npx expo export && eas update --auto --skip-bundler
+        run: eas update --auto
