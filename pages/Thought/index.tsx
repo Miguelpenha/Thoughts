@@ -33,10 +33,10 @@ function Thought() {
                     <Text>{thought.text}</Text>
                 </ContainerText>
                 <Options>
-                    <ButtonIconCancel onPress={() => modalizeDeleteThought.open()}>
+                    <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>
                         <IconCancel name="delete" size={40}/>
                     </ButtonIconCancel>
-                    <ButtonIcon onPress={handleShare}>
+                    <ButtonIcon index={2} onPress={handleShare}>
                         <Icon name="share" size={40}/>
                     </ButtonIcon>
                 </Options>

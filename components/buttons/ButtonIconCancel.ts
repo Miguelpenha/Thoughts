@@ -1,10 +1,7 @@
 import styled from 'styled-components/native'
-import Button from './Button'
+import ButtonIcon from './ButtonIcon'
 
-const ButtonIconCancel = styled(Button)`
-    width: 15%;
-    padding: 2%;
-    border-radius: 40px;
+const ButtonIconCancel = styled(ButtonIcon)`
     background-color: ${props => props.theme.error};
 `
 

@@ -26,9 +26,11 @@ export const Options = styled.View`
 `
 
 export const IconCancel = styled(MaterialIcons)`
+    position: absolute;
     color: ${props => props.theme.color};
 `
 
 export const Icon = styled(MaterialIcons)`
+    position: absolute;
     color: ${props => props.theme.primary};
 `

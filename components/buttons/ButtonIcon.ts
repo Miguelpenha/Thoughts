@@ -1,10 +1,13 @@
 import styled from 'styled-components/native'
 import Button from './Button'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
 const ButtonIcon = styled(Button)`
-    width: 15%;
     padding: 2%;
     border-radius: 40px;
+    flex-direction: column;
+    width: ${RFPercentage(10)}px;
+    height: ${RFPercentage(10)}px;
     background-color: ${props => props.theme.secondary};
 `
 
