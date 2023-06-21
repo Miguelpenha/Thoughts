@@ -8,6 +8,7 @@ import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
 import { ContainerText, Text, Options, IconCancel, Icon } from './style'
 import { FadeInDown } from 'react-native-reanimated'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 import ButtonIconCancel from '../../components/buttons/ButtonIconCancel'
 import ButtonIcon from '../../components/buttons/ButtonIcon'
 import { Modalize } from 'react-native-modalize'
@@ -34,10 +35,10 @@ function Thought() {
                 </ContainerText>
                 <Options>
                     <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>
-                        <IconCancel name="delete" size={40}/>
+                        <IconCancel name="delete" size={RFPercentage(5)}/>
                     </ButtonIconCancel>
                     <ButtonIcon index={2} onPress={handleShare}>
-                        <Icon name="share" size={40}/>
+                        <Icon name="share" size={RFPercentage(5)}/>
                     </ButtonIcon>
                 </Options>
                 <Modalize {...props}>

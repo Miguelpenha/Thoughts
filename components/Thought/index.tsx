@@ -3,17 +3,19 @@ import { FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import useAnimation from './useAnimation'
 import { Container, Icon, Name, IconNext } from './style'
+import { FadeInUp } from 'react-native-reanimated'
 
 interface IProps {
+    index: number
     thought: IThought
 }
 
-const Thought: FC<IProps> = ({ thought }) => {
+const Thought: FC<IProps> = ({ index, thought }) => {
     const navigation = useNavigation()
     const animation = useAnimation(() => navigation.navigate('Thought', { thoughtID: thought.id }))
 
     return (
-        <Container activeOpacity={0.5} {...animation}>
+        <Container entering={FadeInUp.duration(200).delay(400+(50*index))} activeOpacity={0.5} {...animation}>
             <Icon size={30} name={thought.icon}/>
             <Name>{thought.name}</Name>
             <IconNext size={40} name="chevron-right"/>
