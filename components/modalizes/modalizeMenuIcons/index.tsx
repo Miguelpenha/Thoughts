@@ -24,7 +24,7 @@ function modalizeMenuIcons(modalize: RefObject<IHandles>, setIcon: Dispatch<SetS
             },
             renderItem: ({ index, item }: { index: number, item: string }) => (
                 item.includes(filter) && (
-                    <ButtonIcon index={index/2} onPress={() => {
+                    <ButtonIcon index={index} onPress={() => {
                         setIcon(item)
 
                         modalize.current.close()
