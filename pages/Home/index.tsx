@@ -9,7 +9,7 @@ import ModalizeLogout from '../../components/modalizes/ModalizeLogout'
 
 function Home() {
     const thoughts = useThoughts()
-    const { modalize: modalizeLogout, props } = useModalize()
+    const { modalize: modalizeLogout, props } = useModalize(60, 60)
 
     return (
         <ContainerDefault>

@@ -8,9 +8,8 @@ function useModalize(height: number=60, snapPoint: number=0) {
 
     const props = {
         ref: modalize.ref,
-        adjustToContentHeight: true,
+        height: RFPercentage(height),
         snapPoint: RFPercentage(snapPoint),
-        childrenStyle: { height: RFPercentage(height) },
         modalStyle: { backgroundColor: theme.backgroundColor },
         handleStyle: { width: RFPercentage(10), backgroundColor: theme.primary }
     }

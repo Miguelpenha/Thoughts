@@ -1,9 +1,10 @@
+import { AnimateProps } from 'react-native-reanimated'
 import { TextInputProps } from 'react-native'
 import { FC } from 'react'
 import useAnimation from './useAnimation'
 import { InputRaw } from './style'
 
-interface Iprops extends TextInputProps {
+interface Iprops extends AnimateProps<TextInputProps> {
     secret?: boolean
 }
 

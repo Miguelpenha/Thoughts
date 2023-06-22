@@ -1,20 +1,29 @@
+import useModalize from '../../components/modalizes/useModalize'
+import { useState } from 'react'
+import modalizeMenuIcons from '../../components/modalizes/modalizeMenuIcons'
 import Container from './Container'
 import HeaderBack from '../../components/HeaderBack'
 import ButtonIcon from '../../components/buttons/ButtonIcon'
 import { IconMenuIcons } from './style'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Form from './Form'
+import { Modalize } from 'react-native-modalize'
 
 function CreateThought() {
+    const { modalize: modalizeMenuIconsRef, props } = useModalize(55, 55)
+    const [icon, setIcon] = useState('book')
+    const modalizeMenuIconsProps = modalizeMenuIcons(modalizeMenuIconsRef.ref, setIcon)
+
     return (
         <>
             <Container>
                 <HeaderBack>Criar pensamento</HeaderBack>
-                <ButtonIcon onPress={() => {}}>
-                    <IconMenuIcons size={RFPercentage(5)} name="book"/>
+                <ButtonIcon onPress={() => modalizeMenuIconsRef.open()}>
+                    <IconMenuIcons size={RFPercentage(5)} name={icon}/>
                 </ButtonIcon>
-                <Form/>
+                <Form icon={icon}/>
             </Container>
+            <Modalize {...props} {...modalizeMenuIconsProps}/>
         </>
     )
 }

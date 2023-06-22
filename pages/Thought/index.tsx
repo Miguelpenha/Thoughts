@@ -24,7 +24,7 @@ function Thought() {
     const handlePress = useHandlePress(thought)
     const animation = useAnimation(handlePress)
     const handleShare = useHandleShare(thought)
-    const { props, modalize: modalizeDeleteThought } = useModalize()
+    const { props, modalize: modalizeDeleteThought } = useModalize(60, 60)
 
     if (thought) {
         return (

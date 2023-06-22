@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { useTheme } from 'styled-components'
 import useHandleSubmit from './useHandleSubmit'
 import { Container, Field, Label } from './style'
@@ -8,12 +8,16 @@ import Animated from 'react-native-reanimated'
 import Switch from '../../../components/Switch'
 import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
 
-function Form() {
+interface IProps {
+    icon: string
+}
+
+const Form: FC<IProps> = ({ icon }) => {
     const [name, setName] = useState('')
     const [text, setText] = useState('')
     const [secure, setSecure] = useState(true)
     const theme = useTheme()
-    const handleSubmit = useHandleSubmit(name, text, secure)
+    const handleSubmit = useHandleSubmit(name, text, secure, icon)
 
     return (
         <Container entering={FadeInDown.delay(200).duration(400)}>

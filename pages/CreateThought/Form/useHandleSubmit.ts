@@ -3,7 +3,7 @@ import Toast from 'react-native-toast-message'
 import createThought from '../../../services/createThought'
 import uuid from 'react-native-uuid'
 
-function useHandleSubmit(name: string, text: string, secure: boolean) {
+function useHandleSubmit(name: string, text: string, secure: boolean, icon: string) {
     const navigation = useNavigation()
 
     async function handleSubmit() {
@@ -12,7 +12,7 @@ function useHandleSubmit(name: string, text: string, secure: boolean) {
                 name,
                 text,
                 secure,
-                icon: 'book',
+                icon: icon as any,
                 id: uuid.v4().toString()
             })
 
