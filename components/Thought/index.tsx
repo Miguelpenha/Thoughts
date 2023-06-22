@@ -1,6 +1,6 @@
 import IThought from '../../types/thought'
 import { FC } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import useOnPress from './onPress'
 import useAnimation from './useAnimation'
 import { Container, Icon, Name, IconNext } from './style'
 import { FadeInUp } from 'react-native-reanimated'
@@ -11,8 +11,8 @@ interface IProps {
 }
 
 const Thought: FC<IProps> = ({ index, thought }) => {
-    const navigation = useNavigation()
-    const animation = useAnimation(() => navigation.navigate('Thought', { thoughtID: thought.id }))
+    const onPress = useOnPress(thought)
+    const animation = useAnimation(onPress)
 
     return (
         <Container entering={FadeInUp.duration(200).delay(400+(50*index))} activeOpacity={0.5} {...animation}>

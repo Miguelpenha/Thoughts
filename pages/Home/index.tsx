@@ -9,7 +9,7 @@ import ModalizeLogout from '../../components/modalizes/ModalizeLogout'
 
 function Home() {
     const thoughts = useThoughts()
-    const { modalize: modalizeLogout, props } = useModalize(60, 60)
+    const { modalize: modalizeLogout, props: propsLogout } = useModalize(60, 60)
 
     return (
         <ContainerDefault>
@@ -19,7 +19,7 @@ function Home() {
                 ListHeaderComponent={<Header onPress={modalizeLogout.open}/>}
                 renderItem={({ index, item }) => <Thought index={index} thought={item}/>}
             />
-            <Modalize {...props}>
+            <Modalize {...propsLogout}>
                 <ModalizeLogout modalize={modalizeLogout.ref}/>
             </Modalize>
         </ContainerDefault>
