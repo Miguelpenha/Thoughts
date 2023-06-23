@@ -1,6 +1,6 @@
 import IThought from '../../types/thought'
 import { FC } from 'react'
-import useOnPress from './onPress'
+import useOnPress from './useOnPress'
 import useAnimation from './useAnimation'
 import { Container, Icon, Name, IconNext } from './style'
 import { FadeInUp } from 'react-native-reanimated'
@@ -18,7 +18,7 @@ const Thought: FC<IProps> = ({ index, thought }) => {
         <Container entering={FadeInUp.duration(200).delay(400+(50*index))} activeOpacity={0.5} {...animation}>
             <Icon size={30} name={thought.icon}/>
             <Name>{thought.name}</Name>
-            <IconNext size={40} name="chevron-right"/>
+            <IconNext size={30} name={thought.secure ? 'lock' : 'arrow-forward-ios'}/>
         </Container>
     )
 }

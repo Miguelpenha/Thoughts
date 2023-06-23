@@ -1,15 +1,26 @@
 import { IThought } from '../../types'
-import * as Clipboard from 'expo-clipboard'
+import { Dispatch, SetStateAction } from 'react'
+import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useHandlePress(thought: IThought) {
+function useHandlePress(thought: IThought, hidden: boolean, setHidden: Dispatch<SetStateAction<boolean>>) {
     async function handlePress() {
-        await Clipboard.setStringAsync(thought.text)
-
-        Toast.show({
-            type: 'success',
-            text1: 'Texto copiado'
-        })
+        if (thought.secure && hidden) {
+            const { success } = await LocalAuthentication.authenticateAsync({
+                promptMessage: 'Autenticar'
+            })
+    
+            if (success) {
+                setHidden(false)
+            } else {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Autenticação falhou'
+                })
+            }
+        } else {
+            setHidden(!hidden)
+        }
     }
 
     return handlePress

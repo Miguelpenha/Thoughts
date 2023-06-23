@@ -13,7 +13,7 @@ export const ContainerText = styled(Animated.createAnimatedComponent(TouchableOp
     background-color: ${props => props.theme.secondary};
 `
 
-export const Text = styled.Text`
+export const Text = styled.TextInput`
     text-align: center;
     font-size: ${RFPercentage(3)}px;
     color: ${props => props.theme.color};

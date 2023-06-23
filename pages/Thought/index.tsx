@@ -1,6 +1,8 @@
 import { useRoute } from '@react-navigation/native'
 import getThought from '../../services/getThought'
+import { useState } from 'react'
 import useHandlePress from './useHandlePress'
+import useHandleLongPress from './useHandleLongPress'
 import useAnimation from './useAnimation'
 import useHandleShare from './handleShare'
 import useModalize from '../../components/modalizes/useModalize'
@@ -21,8 +23,10 @@ interface IParams {
 function Thought() {
     const { thoughtID } = useRoute().params as IParams
     const thought = getThought(thoughtID)
-    const handlePress = useHandlePress(thought)
-    const animation = useAnimation(handlePress)
+    const [hidden, setHidden] = useState(false)
+    const handlePress = useHandlePress(thought, hidden, setHidden)
+    const handleLongPress = useHandleLongPress(thought)
+    const animation = useAnimation(handleLongPress, handlePress)
     const handleShare = useHandleShare(thought)
     const { props, modalize: modalizeDeleteThought } = useModalize(60, 60)
 
@@ -31,7 +35,7 @@ function Thought() {
             <ContainerDefault>
                 <HeaderBack>{thought.name}</HeaderBack>
                 <ContainerText entering={FadeInDown.delay(100).duration(400)} activeOpacity={0.5} {...animation}>
-                    <Text>{thought.text}</Text>
+                    <Text value={thought.text} editable={false} secureTextEntry={hidden}/>
                 </ContainerText>
                 <Options>
                     <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>

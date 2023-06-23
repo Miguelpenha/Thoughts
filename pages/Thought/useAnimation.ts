@@ -1,7 +1,7 @@
 import { TouchableOpacityProps } from'react-native'
 import { useSharedValue, useAnimatedStyle, withTiming, withSequence } from 'react-native-reanimated'
 
-function useAnimation(onPress: Function): TouchableOpacityProps {
+function useAnimation(onLongPress: Function, onPress: Function): TouchableOpacityProps {
     const scale = useSharedValue(1)
 
     const animation = useAnimatedStyle(() => ({
@@ -27,6 +27,9 @@ function useAnimation(onPress: Function): TouchableOpacityProps {
             )
 
             onPress()
+        },
+        onLongPress() {
+            onLongPress()
         }
     }
 }
