@@ -23,7 +23,7 @@ function modalizeMenuIcons(modalize: RefObject<IHandles>, setIcon: Dispatch<SetS
                 justifyContent: 'space-evenly'
             },
             renderItem: ({ index, item }: { index: number, item: string }) => (
-                item.includes(filter) && (
+                item.toUpperCase().includes(filter.toUpperCase()) && (
                     <ButtonIcon index={index} onPress={() => {
                         setIcon(item)
 
@@ -36,6 +36,7 @@ function modalizeMenuIcons(modalize: RefObject<IHandles>, setIcon: Dispatch<SetS
             ListHeaderComponent: (
                 <Input
                     value={filter}
+                    autoCapitalize="none"
                     onChangeText={setFilter}
                     cursorColor={theme.primary}
                     placeholder="Nome do ícone..."
