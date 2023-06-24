@@ -13,9 +13,9 @@ import ModalizeDeleteThought from '../../components/modalizes/ModalizeDeleteThou
 
 function Home() {
     const thoughts = useThoughts()
-    const { modalize: modalizeLogout, props: propsLogout } = useModalize(60, 60)
-    const { modalize: modalizeOptions, props: propsOptions } = useModalize(70, 70)
-    const { modalize: modalizeDelete, props: propsDelete } = useModalize(60, 60)
+    const { modalize: modalizeLogout, props: propsLogout } = useModalize(60)
+    const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70)
+    const { modalize: modalizeDelete, props: propsDelete } = useModalize(60)
     const [thoughtSelected, setThoughtSelected] = useState<IThought>()
 
     return (
@@ -30,7 +30,7 @@ function Home() {
                     modalizeOptions.open()
                 }}/>}
             />
-            <Modalize {...propsLogout}>
+            <Modalize FloatingComponent {...propsLogout}>
                 <ModalizeLogout modalize={modalizeLogout.ref}/>
             </Modalize>
             <Modalize {...propsOptions}>

@@ -19,18 +19,20 @@ const ModalizeOptionsThought: FC<IProps> = ({ thought, modalize, modalizeDelete 
     return (
         <Options>
             {options.map((option, index) => {
-                if (!option.type || option.type === 'primary') {
-                    return (
-                        <Button title={option.title} key={index} index={index} onPress={option.onPress}>
-                            <Icon name={option.icon} size={35}/>
-                        </Button>
-                    )
-                } else if (option.type === 'delete') {
-                    return (
-                        <ButtonCancel title={option.title} key={index} index={index} onPress={option.onPress}>
-                            <Icon color="color" name={option.icon} size={35}/>
-                        </ButtonCancel>
-                    )
+                if (!option.verify || option.verify(thought)) {
+                    if (!option.type || option.type === 'primary') {
+                        return (
+                            <Button title={option.title} key={index} index={index} onPress={option.onPress}>
+                                <Icon name={option.icon} size={30}/>
+                            </Button>
+                        )
+                    } else if (option.type === 'delete') {
+                        return (
+                            <ButtonCancel title={option.title} key={index} index={index} onPress={option.onPress}>
+                                <Icon color="color" name={option.icon} size={30}/>
+                            </ButtonCancel>
+                        )
+                    }
                 }
             })}
         </Options>

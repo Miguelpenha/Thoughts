@@ -23,10 +23,10 @@ const ModalizeLogout: FC<IProps> = ({ modalize }) => {
     return <>
         <Title entering={FadeInUp.duration(700)}>Fazer logout?</Title>
         <ButtonCancel title="Logout" index={1} onPress={handleLogout}>
-            <Icon color="color" name="logout" size={35}/>
+            <Icon color="color" name="logout" size={30}/>
         </ButtonCancel>
         <Button title="Cancelar" index={2} onPress={() => modalize.current.close()}>
-            <Icon name="close" size={35}/>
+            <Icon name="close" size={30}/>
         </Button>
     </>
 }

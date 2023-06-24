@@ -10,9 +10,10 @@ import Form from './Form'
 import { Modalize } from 'react-native-modalize'
 
 function CreateThought() {
-    const { modalize: modalizeMenuIconsRef, props } = useModalize(55, 55)
+    const [height, setHeight] = useState(90)
+    const { modalize: modalizeMenuIconsRef, props } = useModalize(height, 55)
     const [icon, setIcon] = useState('book')
-    const modalizeMenuIconsProps = modalizeMenuIcons(modalizeMenuIconsRef.ref, setIcon)
+    const modalizeMenuIconsProps = modalizeMenuIcons(setHeight, modalizeMenuIconsRef.ref, setIcon)
 
     return (
         <>
@@ -23,7 +24,7 @@ function CreateThought() {
                 </ButtonIcon>
                 <Form icon={icon}/>
             </Container>
-            <Modalize {...props} {...modalizeMenuIconsProps}/>
+            <Modalize onClosed={() => setHeight(90)} {...props} {...modalizeMenuIconsProps}/>
         </>
     )
 }

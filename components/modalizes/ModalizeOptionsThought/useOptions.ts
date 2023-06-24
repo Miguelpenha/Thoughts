@@ -3,9 +3,11 @@ import { RefObject } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import { IOption } from './type'
 import useHandleShareThought from '../../useHandleShareThought'
+import useHandleChangeSecure from '../../useHandleChangeSecure'
 
 function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>): IOption[] {
     const handleShareThought = useHandleShareThought(thought)
+    const handleChangeSecure = useHandleChangeSecure(thought)
 
     return [
         {
@@ -21,7 +23,12 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDe
         {
             icon: 'lock',
             title: 'Tornar seguro',
-            onPress: () => {}
+            verify: thought => !thought.secure,
+            onPress: async () => {
+                modalize.current.close()
+
+                await handleChangeSecure()
+            }
         },
         {
             icon: 'share',

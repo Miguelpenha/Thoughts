@@ -5,7 +5,7 @@ import useHandleDeleteThought from '../../useHandleDeleteThought'
 import { Title } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import ButtonCancel from '../../buttons/ButtonCancel'
-import { MaterialIcons } from '@expo/vector-icons'
+import Icon from '../../Icon'
 import Button from '../../buttons/Button'
 
 interface IProps {
@@ -19,10 +19,10 @@ const ModalizeDeleteThought: FC<IProps> = ({ thought, modalize }) => {
     return <>
         <Title entering={FadeInUp.duration(700)}>Deletar pensamento?</Title>
         <ButtonCancel title="Deletar" index={1} onPress={handleDeleteThought}>
-            <MaterialIcons icon="logout" size={30}/>
+            <Icon color="color" name="delete" size={30}/>
         </ButtonCancel>
         <Button title="Cancelar" index={2} onPress={() => modalize.current.close()}>
-            <MaterialIcons icon="close" size={30}/>
+            <Icon name="close" size={30}/>
         </Button>
     </>
 }

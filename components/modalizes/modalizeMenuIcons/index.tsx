@@ -8,7 +8,7 @@ import { Icon, Input } from './style'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FadeInUp } from 'react-native-reanimated'
 
-function modalizeMenuIcons(modalize: RefObject<IHandles>, setIcon: Dispatch<SetStateAction<string>>): { flatListProps: FlatListProps<any>, onClose: () => void } {
+function modalizeMenuIcons(setHeight: Dispatch<SetStateAction<number>>, modalize: RefObject<IHandles>, setIcon: Dispatch<SetStateAction<string>>): { flatListProps: FlatListProps<any>, onClose: () => void } {
     const [filter, setFilter] = useState('')
     const theme = useTheme()
     
@@ -39,6 +39,8 @@ function modalizeMenuIcons(modalize: RefObject<IHandles>, setIcon: Dispatch<SetS
                     autoCapitalize="none"
                     onChangeText={setFilter}
                     cursorColor={theme.primary}
+                    onBlur={() => setHeight(90)}
+                    onFocus={() => setHeight(55)}
                     placeholder="Nome do ícone..."
                     selectionColor={theme.primary}
                     placeholderTextColor={theme.primary}
