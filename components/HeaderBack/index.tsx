@@ -1,7 +1,8 @@
 import { MaterialIcons } from '@expo/vector-icons'
 import { FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Container, ContainerIcon, Icon, Title, ContainerIconSettings, IconSettings } from './style'
+import useAnimation from './useAnimation'
+import { Container, ContainerIcon, Icon, Title, ContainerIconSettings, IconSettings, Line } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import limitText from '../../utils/limitText'
 
@@ -15,6 +16,7 @@ interface Iprops {
 
 const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', children, settings=false }) => {
     const navigation = useNavigation()
+    const animation = useAnimation()
 
     return (
         <Container entering={FadeInUp}>
@@ -29,6 +31,7 @@ const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', chi
                     <IconSettings name="settings" size={28}/>
                 </ContainerIconSettings>
             )}
+            <Line style={animation}/>
         </Container>
     )
 }

@@ -32,3 +32,10 @@ export const ContainerIconSettings = styled.TouchableOpacity`
 export const IconSettings = styled(MaterialIcons)`
     color: ${props => props.theme.secondaryColor};
 `
+
+export const Line = styled(Animated.View)`
+    bottom: -25%;
+    position: absolute;
+    border-bottom-width: 2px;
+    border-bottom-color: ${props => props.theme.primary};
+`
