@@ -5,9 +5,9 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import LoadingRaw from '../../Loading'
 
 export const Container = styled(Animated.createAnimatedComponent(TouchableOpacity))`
-    width: 55%;
+    width: 60%;
     margin: 7%;
-    padding: 3%;
+    padding: 5.5%;
     align-self: center;
     border-radius: 15px;
     align-items: center;

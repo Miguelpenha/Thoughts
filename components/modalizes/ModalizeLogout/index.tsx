@@ -4,7 +4,7 @@ import useLogout from './useLogout'
 import { Title } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import ButtonCancel from '../../buttons/ButtonCancel'
-import { MaterialIcons } from '@expo/vector-icons'
+import Icon from '../../Icon'
 import Button from '../../buttons/Button'
 
 interface IProps {
@@ -23,10 +23,10 @@ const ModalizeLogout: FC<IProps> = ({ modalize }) => {
     return <>
         <Title entering={FadeInUp.duration(700)}>Fazer logout?</Title>
         <ButtonCancel title="Logout" index={1} onPress={handleLogout}>
-            <MaterialIcons icon="logout" size={30}/>
+            <Icon color="color" name="logout" size={35}/>
         </ButtonCancel>
         <Button title="Cancelar" index={2} onPress={() => modalize.current.close()}>
-            <MaterialIcons icon="close" size={30}/>
+            <Icon name="close" size={35}/>
         </Button>
     </>
 }

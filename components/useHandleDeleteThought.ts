@@ -1,14 +1,16 @@
-import { IThought } from '../../../types'
-import useDeleteThought from '../../../services/useDeleteThought'
+import { IThought } from '../types'
+import { RefObject } from 'react'
+import { IHandles } from 'react-native-modalize/lib/options'
+import useDeleteThought from '../services/useDeleteThought'
 import { useNavigation } from '@react-navigation/native'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useHandleDelete(thought: IThought) {
+function useHandleDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next: boolean=true) {
     const deleteThought = useDeleteThought(thought)
     const navigation = useNavigation()
 
-    async function handleDelete() {
+    async function handleDeleteThought() {
         if (thought.secure) {
             const { success } = await LocalAuthentication.authenticateAsync({
                 promptMessage: 'Autenticar'
@@ -22,7 +24,7 @@ function useHandleDelete(thought: IThought) {
                     text1: 'Pensamento excluído'
                 })
 
-                navigation.navigate('Home')
+                next ? navigation.navigate('Home') : modalize.current.close()
             } else {
                 Toast.show({
                     type: 'error',
@@ -37,11 +39,11 @@ function useHandleDelete(thought: IThought) {
                 text1: 'Pensamento excluído'
             })
 
-            navigation.navigate('Home')
+            next ? navigation.navigate('Home') : modalize.current.close()
         }
     }
 
-    return handleDelete
+    return handleDeleteThought
 }
 
-export default useHandleDelete
+export default useHandleDeleteThought
