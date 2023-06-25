@@ -6,6 +6,7 @@ import Input from '../../../components/Input'
 import InputSecret from '../../../components/InputSecret'
 import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
 import useHandleSubmit from './useHandleSubmit'
+import Icon from '../../../components/Icon'
 
 function Form() {
     const [name, setName] = useState('')
@@ -42,7 +43,9 @@ function Form() {
                     placeholderTextColor={theme.primary}
                 />
             </Field>
-            <ButtonSubmit loading title="Confirmar" onPress={handleSubmit}/>
+            <ButtonSubmit loading title="Confirmar" onPress={handleSubmit} directionIcon="right">
+                <Icon name="arrow-forward-ios" size={30} directionIcon="right"/>
+            </ButtonSubmit>
         </Container>
     )
 }

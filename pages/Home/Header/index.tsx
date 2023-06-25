@@ -13,7 +13,7 @@ const Header: FC<IProps> = ({ onPress }) => {
     const navigation = useNavigation()
 
     return <>
-        <HeaderBack icon="logout" onPress={onPress}>
+        <HeaderBack settings icon="logout" onPress={onPress}>
             Pensamentos
         </HeaderBack>
         <ButtonIcon onPress={() => navigation.navigate('CreateThought')}>

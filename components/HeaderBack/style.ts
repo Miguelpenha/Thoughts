@@ -24,13 +24,9 @@ export const Title = styled.Text`
 `
 
 export const ContainerIconSettings = styled.TouchableOpacity`
-    left: 88%;
-    position: absolute;
-    align-self: flex-end;
-`
-
-export const IconSettings = styled(MaterialIcons)`
-    color: ${props => props.theme.secondaryColor};
+    margin-right: 4%;
+    margin-left: auto;
+    align-self: center;
 `
 
 export const Line = styled(Animated.View)`

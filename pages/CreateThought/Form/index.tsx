@@ -7,6 +7,7 @@ import Input from '../../../components/Input'
 import Animated from 'react-native-reanimated'
 import Switch from '../../../components/Switch'
 import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
+import Icon from '../../../components/Icon'
 
 interface IProps {
     icon: string
@@ -48,7 +49,9 @@ const Form: FC<IProps> = ({ icon }) => {
             <Animated.View entering={FadeInDown.delay(500).duration(400)}>
                 <Switch label="Seguro" setValue={setSecure} value={secure}/>
             </Animated.View>
-            <ButtonSubmit loading title="Confirmar" onPress={handleSubmit}/>
+            <ButtonSubmit directionIcon="right" loading title="Confirmar" onPress={handleSubmit}>
+                <Icon name="arrow-forward-ios" size={30} directionIcon="right"/>
+            </ButtonSubmit>
         </Container>
     )
 }

@@ -2,7 +2,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import useAnimation from './useAnimation'
-import { Container, ContainerIcon, Icon, Title, ContainerIconSettings, IconSettings, Line } from './style'
+import { Container, ContainerIcon, Icon, Title, ContainerIconSettings, Line } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import limitText from '../../utils/limitText'
 
@@ -28,7 +28,7 @@ const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', chi
             <Title>{limitText(children, 25)}</Title>
             {settings && (
                 <ContainerIconSettings onPress={() => navigation.navigate('Settings')}>
-                    <IconSettings name="settings" size={28}/>
+                    <Icon name="settings" size={28}/>
                 </ContainerIconSettings>
             )}
             <Line style={animation}/>

@@ -11,10 +11,11 @@ interface IProps extends AnimateProps<TouchableOpacityProps> {
     style?: ViewStyle
     loading?: boolean
     styleText?: TextStyle
+    directionIcon?: 'left' | 'right'
     onPress: () => void | Promise<void>
 }
 
-const Button: FC<IProps> = ({ index=1, loading=false, onPress, style, children, styleText, title, ...props }) => {
+const Button: FC<IProps> = ({ index=1, loading=false, onPress, style, children, directionIcon='left', styleText, title, ...props }) => {
     const animation = useAnimation(index, handlePress, style)
     const [loadingState, setLoadingState] = useState(false)
 
@@ -28,8 +29,9 @@ const Button: FC<IProps> = ({ index=1, loading=false, onPress, style, children, 
     
     return (
         <Container disabled={loadingState} {...animation} {...props}>
-            {loadingState ? <Loading size={35}/> : children}
+            {directionIcon === 'left' && (loadingState ? <Loading size={35}/> : children)}
             <Text style={styleText}>{title}</Text>
+            {directionIcon === 'right' && (loadingState ? <Loading size={35}/> : children)}
         </Container>
     )
 }
