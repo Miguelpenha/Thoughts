@@ -21,8 +21,10 @@ export const Text = styled.TextInput`
 
 export const Options = styled.View`
     margin-top: 5%;
+    flex-wrap: wrap;
     align-self: center;
     flex-direction: row;
+    justify-content: center;
 `
 
 export const IconCancel = styled(MaterialIcons)`

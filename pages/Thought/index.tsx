@@ -5,6 +5,7 @@ import useHandlePress from './useHandlePress'
 import useHandleLongPress from './useHandleLongPress'
 import useAnimation from './useAnimation'
 import useHandleShare from '../../components/useHandleShareThought'
+import useHandleChangeSecure from '../../components/useHandleChangeSecure'
 import useModalize from '../../components/modalizes/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
@@ -28,6 +29,7 @@ function Thought() {
     const handleLongPress = useHandleLongPress(thought)
     const animation = useAnimation(handleLongPress, handlePress)
     const handleShare = useHandleShare(thought)
+    const handleChangeSecure = useHandleChangeSecure(thought)
     const { props, modalize: modalizeDeleteThought } = useModalize(60, 60)
 
     if (thought) {
@@ -46,6 +48,9 @@ function Thought() {
                     </ButtonIcon>
                     <ButtonIcon index={3} onPress={handleShare}>
                         <Icon name="share" size={RFPercentage(5)}/>
+                    </ButtonIcon>
+                    <ButtonIcon index={4} onPress={handleChangeSecure}>
+                        <Icon name={thought.secure ? 'lock-open' : 'lock'} size={RFPercentage(5)}/>
                     </ButtonIcon>
                 </Options>
                 <Modalize {...props}>

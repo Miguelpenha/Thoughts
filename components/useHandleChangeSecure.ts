@@ -4,7 +4,7 @@ import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
 function useHandleChangeSecure(thought: IThought) {
-    const changeSecureThought = useChangeSecureThought(thought.id)
+    const changeSecureThought = useChangeSecureThought(thought)
 
     async function handleChangeSecure() {
         const { success } = await LocalAuthentication.authenticateAsync({

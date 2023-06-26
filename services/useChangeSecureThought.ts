@@ -1,15 +1,15 @@
-import useThoughts from './useThoughts'
 import { IThought } from '../types'
+import useThoughts from './useThoughts'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-function useChangeSecureThought(id: string) {
+function useChangeSecureThought(thought: IThought) {
     const thoughts = useThoughts()
 
     async function changeSecureThought() {
         const newThoughts: IThought[] = []
 
         thoughts.map(thoughtMap => {
-            if (thoughtMap.id != id) {
+            if (thoughtMap.id != thought.id) {
                 newThoughts.push(thoughtMap)
             } else {
                 newThoughts.push({
