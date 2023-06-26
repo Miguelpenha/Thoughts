@@ -22,8 +22,7 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDe
         },
         {
             icon: 'lock',
-            title: 'Tornar seguro',
-            verify: thought => !thought.secure,
+            title: 'Segurança',
             onPress: async () => {
                 modalize.current.close()
 

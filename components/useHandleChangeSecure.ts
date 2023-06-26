@@ -15,8 +15,8 @@ function useHandleChangeSecure(thought: IThought) {
             await changeSecureThought()
 
             Toast.show({
-                type: 'success',
-                text1: 'Pensamento seguro'
+                type: !thought.secure ? 'success' : 'error',
+                text1: `Pensamento ${!thought.secure ? '' : 'não'} seguro`
             })
         } else {
             Toast.show({
