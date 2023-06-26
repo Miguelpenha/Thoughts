@@ -41,7 +41,10 @@ function Thought() {
                     <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>
                         <IconCancel name="delete" size={RFPercentage(5)}/>
                     </ButtonIconCancel>
-                    <ButtonIcon index={2} onPress={handleShare}>
+                    <ButtonIcon index={2} onPress={() => {}}>
+                        <Icon name="edit" size={RFPercentage(5)}/>
+                    </ButtonIcon>
+                    <ButtonIcon index={3} onPress={handleShare}>
                         <Icon name="share" size={RFPercentage(5)}/>
                     </ButtonIcon>
                 </Options>
