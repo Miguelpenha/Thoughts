@@ -41,8 +41,8 @@ function modalizeMenuIcons(setHeight: Dispatch<SetStateAction<number>>, modalize
                     cursorColor={theme.primary}
                     onBlur={() => setHeight(90)}
                     onFocus={() => setHeight(55)}
-                    placeholder="Nome do ícone..."
                     selectionColor={theme.primary}
+                    placeholder="Pesquisar ícone..."
                     placeholderTextColor={theme.primary}
                     entering={FadeInUp.duration(400).delay(200)}
                 />
