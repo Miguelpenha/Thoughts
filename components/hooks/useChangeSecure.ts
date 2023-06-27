@@ -1,12 +1,12 @@
-import { IThought } from '../types'
-import useChangeSecureThought from '../services/useChangeSecureThought'
+import { IThought } from '../../types'
+import useChangeSecureThought from '../../services/useChangeSecureThought'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useHandleChangeSecure(thought: IThought) {
+function useChangeSecure(thought: IThought) {
     const changeSecureThought = useChangeSecureThought(thought)
 
-    async function handleChangeSecure() {
+    async function changeSecure() {
         const { success } = await LocalAuthentication.authenticateAsync({
             promptMessage: 'Autenticar'
         })
@@ -26,7 +26,7 @@ function useHandleChangeSecure(thought: IThought) {
         }
     }
 
-    return handleChangeSecure
+    return changeSecure
 }
 
-export default useHandleChangeSecure
+export default useChangeSecure

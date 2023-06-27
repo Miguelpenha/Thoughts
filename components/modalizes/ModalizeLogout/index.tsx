@@ -1,6 +1,6 @@
 import { RefObject, FC } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
-import useLogout from './useLogout'
+import useLogout from '../../hooks/useLogout'
 import { Title } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import ButtonCancel from '../../buttons/ButtonCancel'

@@ -4,9 +4,9 @@ import { useState } from 'react'
 import useHandlePress from './useHandlePress'
 import useHandleLongPress from './useHandleLongPress'
 import useAnimation from './useAnimation'
-import useHandleShare from '../../components/useHandleShareThought'
-import useHandleChangeSecure from '../../components/useHandleChangeSecure'
-import useModalize from '../../components/modalizes/useModalize'
+import useShareThought from '../../components/hooks/useShareThought'
+import useChangeSecure from '../../components/hooks/useChangeSecure'
+import useModalize from '../../components/hooks/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
 import { ContainerText, Text, Options, IconCancel, Icon } from './style'
@@ -28,8 +28,8 @@ function Thought() {
     const handlePress = useHandlePress(thought, hidden, setHidden)
     const handleLongPress = useHandleLongPress(thought)
     const animation = useAnimation(handleLongPress, handlePress)
-    const handleShare = useHandleShare(thought)
-    const handleChangeSecure = useHandleChangeSecure(thought)
+    const shareThought = useShareThought(thought)
+    const changeSecure = useChangeSecure(thought)
     const { props, modalize: modalizeDeleteThought } = useModalize(60, 60)
 
     if (thought) {
@@ -46,10 +46,10 @@ function Thought() {
                     <ButtonIcon index={2} onPress={() => {}}>
                         <Icon name="edit" size={RFPercentage(5)}/>
                     </ButtonIcon>
-                    <ButtonIcon index={3} onPress={handleShare}>
+                    <ButtonIcon index={3} onPress={shareThought}>
                         <Icon name="share" size={RFPercentage(5)}/>
                     </ButtonIcon>
-                    <ButtonIcon index={4} onPress={handleChangeSecure}>
+                    <ButtonIcon index={4} onPress={changeSecure}>
                         <Icon name={thought.secure ? 'lock-open' : 'lock'} size={RFPercentage(5)}/>
                     </ButtonIcon>
                 </Options>

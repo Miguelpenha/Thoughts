@@ -1,4 +1,4 @@
-import useModalize from '../../components/modalizes/useModalize'
+import useModalize from '../../components/hooks/useModalize'
 import { useState } from 'react'
 import modalizeMenuIcons from '../../components/modalizes/modalizeMenuIcons'
 import Container from './Container'

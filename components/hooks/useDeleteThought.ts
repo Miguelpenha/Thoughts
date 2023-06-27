@@ -1,23 +1,23 @@
-import { IThought } from '../types'
+import { IThought } from '../../types'
 import { RefObject } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
-import useDeleteThought from '../services/useDeleteThought'
+import useDeleteThoughtService from '../../services/useDeleteThought'
 import { useNavigation } from '@react-navigation/native'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useHandleDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next: boolean=true) {
-    const deleteThought = useDeleteThought(thought)
+function useDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next: boolean=true) {
+    const deleteThoughtService = useDeleteThoughtService(thought)
     const navigation = useNavigation()
 
-    async function handleDeleteThought() {
+    async function deleteThought() {
         if (thought.secure) {
             const { success } = await LocalAuthentication.authenticateAsync({
                 promptMessage: 'Autenticar'
             })
     
             if (success) {
-                await deleteThought()
+                await deleteThoughtService()
 
                 Toast.show({
                     type: 'error',
@@ -32,7 +32,7 @@ function useHandleDeleteThought(thought: IThought, modalize: RefObject<IHandles>
                 })
             }
         } else {
-            await deleteThought()
+            await deleteThoughtService()
 
             Toast.show({
                 type: 'error',
@@ -43,7 +43,7 @@ function useHandleDeleteThought(thought: IThought, modalize: RefObject<IHandles>
         }
     }
 
-    return handleDeleteThought
+    return deleteThought
 }
 
-export default useHandleDeleteThought
+export default useDeleteThought

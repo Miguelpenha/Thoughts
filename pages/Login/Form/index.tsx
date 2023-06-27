@@ -44,7 +44,7 @@ function Form() {
                 />
             </Field>
             <ButtonSubmit loading title="Confirmar" onPress={handleSubmit} directionIcon="right">
-                <Icon name="arrow-forward-ios" size={30} directionIcon="right"/>
+                <Icon name="arrow-forward-ios" size={25} directionIcon="right"/>
             </ButtonSubmit>
         </Container>
     )

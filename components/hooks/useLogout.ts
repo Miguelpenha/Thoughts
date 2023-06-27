@@ -1,17 +1,17 @@
-import useAuth from '../../../contexts/authContext'
+import useAuth from '../../contexts/authContext'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
 function useLogout() {
-    const { logout } = useAuth()
+    const { logout: logoutRaw } = useAuth()
 
-    async function handleLogout() {
+    async function logout() {
         const { success } = await LocalAuthentication.authenticateAsync({
             promptMessage: 'Autenticar'
         })
 
         if (success) {
-            await logout()
+            await logoutRaw()
 
             Toast.show({
                 type: 'error',
@@ -25,7 +25,7 @@ function useLogout() {
         }
     }
 
-    return handleLogout
+    return logout
 }
 
 export default useLogout

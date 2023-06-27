@@ -50,7 +50,7 @@ const Form: FC<IProps> = ({ icon }) => {
                 <Switch label="Seguro" setValue={setSecure} value={secure}/>
             </Animated.View>
             <ButtonSubmit directionIcon="right" loading title="Confirmar" onPress={handleSubmit}>
-                <Icon name="arrow-forward-ios" size={30} directionIcon="right"/>
+                <Icon name="arrow-forward-ios" size={25} directionIcon="right"/>
             </ButtonSubmit>
         </Container>
     )

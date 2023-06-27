@@ -2,12 +2,12 @@ import { IThought } from '../../../types'
 import { RefObject } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import { IOption } from './type'
-import useHandleShareThought from '../../useHandleShareThought'
-import useHandleChangeSecure from '../../useHandleChangeSecure'
+import useShareThought from '../../hooks/useShareThought'
+import useChangeSecure from '../../hooks/useChangeSecure'
 
 function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>): IOption[] {
-    const handleShareThought = useHandleShareThought(thought)
-    const handleChangeSecure = useHandleChangeSecure(thought)
+    const shareThought = useShareThought(thought)
+    const changeSecure = useChangeSecure(thought)
 
     return [
         {
@@ -26,7 +26,7 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDe
             onPress: async () => {
                 modalize.current.close()
 
-                await handleChangeSecure()
+                await changeSecure()
             }
         },
         {
@@ -35,7 +35,7 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDe
             onPress: async () => {
                 modalize.current.close()
 
-                setTimeout(handleShareThought, 200)
+                setTimeout(shareThought, 200)
             }
         },
         {

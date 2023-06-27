@@ -1,5 +1,5 @@
 import useThoughts from '../../services/useThoughts'
-import useModalize from '../../components/modalizes/useModalize'
+import useModalize from '../../components/hooks/useModalize'
 import { useState } from 'react'
 import { IThought } from '../../types'
 import ContainerDefault from '../../components/ContainerDefault'

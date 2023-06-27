@@ -1,10 +1,10 @@
-import { IThought } from '../types'
+import { IThought } from '../../types'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 import { Share } from 'react-native'
 
-function useHandleShareThought(thought: IThought) {
-    async function handleShareThought() {
+function useShareThought(thought: IThought) {
+    async function shareThought() {
         if (thought.secure) {
             const { success } = await LocalAuthentication.authenticateAsync({
                 promptMessage: 'Autenticar'
@@ -29,7 +29,7 @@ function useHandleShareThought(thought: IThought) {
         }
     }
 
-    return handleShareThought
+    return shareThought
 }
 
-export default useHandleShareThought
+export default useShareThought
