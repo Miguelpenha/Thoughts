@@ -18,7 +18,7 @@ function modalizeMenuIcons(setHeight: Dispatch<SetStateAction<number>>, modalize
         },
         flatListProps: {
             data: icons,
-            numColumns: 3,
+            numColumns: 4,
             columnWrapperStyle: {
                 justifyContent: 'space-evenly'
             },

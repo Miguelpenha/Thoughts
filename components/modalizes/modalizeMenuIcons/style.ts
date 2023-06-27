@@ -8,7 +8,7 @@ export const Icon = styled(MaterialIcons)`
 `
 
 export const Input = styled(InputRaw)`
-    width: 70%;
+    width: 85%;
     margin-top: 5%;
     align-self: center;
     background-color: ${props => props.theme.backgroundColorSecondary};
