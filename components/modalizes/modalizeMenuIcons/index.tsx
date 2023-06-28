@@ -24,7 +24,7 @@ function modalizeMenuIcons(setHeight: Dispatch<SetStateAction<number>>, modalize
             },
             renderItem: ({ index, item }: { index: number, item: string }) => (
                 item.toUpperCase().includes(filter.toUpperCase()) && (
-                    <ButtonIcon index={index/2} onPress={() => {
+                    <ButtonIcon index={index/1.5} onPress={() => {
                         setIcon(item)
 
                         modalize.current.close()
