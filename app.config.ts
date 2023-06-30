@@ -42,5 +42,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   runtimeVersion: {
     policy: 'sdkVersion'
-  }
+  },
+  plugins: [
+    [
+      'expo-local-authentication',
+      {
+        faceIDPermission: 'Permita Thoughts usar o Face ID.'
+      }
+    ]
+  ]
 })
