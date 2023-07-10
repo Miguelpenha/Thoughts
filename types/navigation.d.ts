@@ -6,6 +6,9 @@ type INavigation = {
     Thought: {
         thoughtID: string
     }
+    EditThought: {
+        thoughtID: string
+    }
 }
 
 export default INavigation

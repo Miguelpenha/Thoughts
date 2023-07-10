@@ -4,6 +4,7 @@ import { useState } from 'react'
 import useHandlePress from './useHandlePress'
 import useHandleLongPress from './useHandleLongPress'
 import useAnimation from './useAnimation'
+import useNavigateVerified from '../../components/hooks/useNavigateVerified'
 import useShareThought from '../../components/hooks/useShareThought'
 import useChangeSecure from '../../components/hooks/useChangeSecure'
 import useModalize from '../../components/hooks/useModalize'
@@ -28,6 +29,7 @@ function Thought() {
     const handlePress = useHandlePress(thought, hidden, setHidden)
     const handleLongPress = useHandleLongPress(thought)
     const animation = useAnimation(handleLongPress, handlePress)
+    const navigateVerified = useNavigateVerified()
     const shareThought = useShareThought(thought)
     const changeSecure = useChangeSecure(thought)
     const { props, modalize: modalizeDeleteThought } = useModalize(60, 60)
@@ -43,7 +45,7 @@ function Thought() {
                     <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>
                         <IconCancel name="delete" size={RFPercentage(5)}/>
                     </ButtonIconCancel>
-                    <ButtonIcon index={2} onPress={() => {}}>
+                    <ButtonIcon index={2} onPress={() => navigateVerified('EditThought', { thoughtID: thought.id }, thought.secure)}>
                         <Icon name="edit" size={RFPercentage(5)}/>
                     </ButtonIcon>
                     <ButtonIcon index={3} onPress={shareThought}>
