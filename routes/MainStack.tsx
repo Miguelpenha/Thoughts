@@ -5,6 +5,7 @@ import Thought from '../pages/Thought'
 import Settings from '../pages/Settings'
 import EditThought from '../pages/EditThought'
 import CreateThought from '../pages/CreateThought'
+import ImportThoughts from '../pages/ImportThoughts'
 
 function MainStack() {
     const { Navigator, Screen } = createStackNavigator<INavigation>()
@@ -21,6 +22,7 @@ function MainStack() {
             <Screen name="Settings" component={Settings}/>
             <Screen name="EditThought" component={EditThought}/>
             <Screen name="CreateThought" component={CreateThought}/>
+            <Screen name="ImportThoughts" component={ImportThoughts}/>
         </Navigator>
     )
 }

@@ -3,6 +3,7 @@ type INavigation = {
     Login: undefined
     Settings: undefined
     CreateThought: undefined
+    ImportThoughts: undefined
     Thought: {
         thoughtID: string
     }

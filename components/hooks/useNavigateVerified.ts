@@ -6,7 +6,7 @@ import Toast from 'react-native-toast-message'
 function useNavigateVerified() {
     const navigation = useNavigation()
 
-    async function navigateVerified(page: keyof INavigation, params: object, secure: boolean=true) {
+    async function navigateVerified(page: keyof INavigation, params: object={}, secure: boolean=true) {
         if (secure) {
             const { success } = await LocalAuthentication.authenticateAsync({
                 promptMessage: 'Autenticar'
