@@ -37,7 +37,7 @@ function Thought() {
     if (thought) {
         return (
             <ContainerDefault>
-                <HeaderBack>{thought.name}</HeaderBack>
+                <HeaderBack>{`${thought.name} ${thought.group ? `(${thought.group})` : ''}`}</HeaderBack>
                 <ContainerText entering={FadeInDown.delay(100).duration(400)} activeOpacity={0.5} {...animation}>
                     <Text value={thought.text} editable={false} secureTextEntry={hidden}/>
                 </ContainerText>
@@ -45,7 +45,9 @@ function Thought() {
                     <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>
                         <IconCancel name="delete" size={RFPercentage(5)}/>
                     </ButtonIconCancel>
-                    <ButtonIcon index={2} onPress={() => navigateVerified('EditThought', { thoughtID: thought.id }, thought.secure)}>
+                    <ButtonIcon index={2} onPress={async () => {
+                        await navigateVerified('EditThought', { thoughtID: thought.id }, thought.secure)
+                    }}>
                         <Icon name="edit" size={RFPercentage(5)}/>
                     </ButtonIcon>
                     <ButtonIcon index={3} onPress={shareThought}>
