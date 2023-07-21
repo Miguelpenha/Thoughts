@@ -4,7 +4,7 @@ interface IThought {
     id: string
     name: string
     text: string
-    type?: string
+    group?: string
     secure: boolean
     icon: keyof typeof MaterialIcons.glyphMap
 }

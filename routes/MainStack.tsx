@@ -3,6 +3,7 @@ import { INavigation } from '../types'
 import Home from '../pages/Home'
 import Thought from '../pages/Thought'
 import Settings from '../pages/Settings'
+import CreateGroup from '../pages/CreateGroup'
 import EditThought from '../pages/EditThought'
 import CreateThought from '../pages/CreateThought'
 import ImportThoughts from '../pages/ImportThoughts'
@@ -20,6 +21,7 @@ function MainStack() {
             <Screen name="Home" component={Home}/>
             <Screen name="Thought" component={Thought}/>
             <Screen name="Settings" component={Settings}/>
+            <Screen name="CreateGroup" component={CreateGroup}/>
             <Screen name="EditThought" component={EditThought}/>
             <Screen name="CreateThought" component={CreateThought}/>
             <Screen name="ImportThoughts" component={ImportThoughts}/>

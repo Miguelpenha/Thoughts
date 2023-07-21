@@ -9,7 +9,7 @@ interface Iprops {
 const Container: FC<Iprops> = ({ children }) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ContainerDefault scroll>
+        <ContainerDefault>
           <KeyboardAvoidingView behavior="position" enabled>
             {children}
           </KeyboardAvoidingView>

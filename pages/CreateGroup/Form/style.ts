@@ -5,16 +5,16 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 export const Container = styled(Animated.View)`
     width: 85%;
     padding: 2%;
-    padding-top: 5%;
+    padding-top: 8%;
+    margin-top: 15%;
     align-self: center;
-    margin-bottom: 40%;
     border-radius: 10px;
     background-color: ${props => props.theme.secondary};
 `
 
 export const Field = styled(Animated.View)`
     width: 75%;
-    margin-bottom: 4%;
+    margin-bottom: 10%;
     align-self: center;
 `
 

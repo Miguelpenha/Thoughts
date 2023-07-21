@@ -1,25 +1,17 @@
 import { useNavigation } from '@react-navigation/native'
+import createGroup from '../../../services/createGroup'
 import Toast from 'react-native-toast-message'
-import createThought from '../../../services/createThought'
-import uuid from 'react-native-uuid'
 
-function useHandleSubmit(name: string, text: string, secure: boolean, icon: string, group: string) {
+function useHandleSubmit(name: string) {
     const navigation = useNavigation()
 
     async function handleSubmit() {
         if (name) {
-            await createThought({
-                name,
-                text,
-                secure,
-                icon: icon as any,
-                id: uuid.v4().toString(),
-                group: group || undefined
-            })
+            await createGroup(name)
 
             Toast.show({
                 type: 'success',
-                text1: 'Pensamento criado com sucesso!'
+                text1: 'Grupo criado com sucesso!'
             })
 
             navigation.goBack()
