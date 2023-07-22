@@ -16,7 +16,7 @@ const Thought: FC<IProps> = ({ index, thought, onLongPress }) => {
     const animation = useAnimation(onPress)
 
     return (
-        <Container onLongPress={onLongPress} entering={FadeInUp.duration(200).delay(400+(50*index))} activeOpacity={0.5} {...animation}>
+        <Container onLongPress={onLongPress} entering={FadeInUp.duration(200).delay(600+(50*index))} activeOpacity={0.5} {...animation}>
             <Icon size={30} name={thought.icon}/>
             <Name>{thought.name}</Name>
             <IconNext size={30} name={thought.secure ? 'lock' : 'arrow-forward-ios'}/>

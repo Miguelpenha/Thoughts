@@ -1,10 +1,13 @@
+import useGroups from '../../services/useGroups'
 import useThoughts from '../../services/useThoughts'
 import useModalize from '../../components/hooks/useModalize'
 import { useState } from 'react'
 import { IThought } from '../../types'
 import ContainerDefault from '../../components/ContainerDefault'
 import { FlashList } from '@shopify/flash-list'
-import Header from './Header'
+import HeaderBack from '../../components/HeaderBack'
+import Group from '../../components/Group'
+import HeaderThoughts from './HeaderThoughts'
 import Thought from '../../components/Thought'
 import { Modalize } from 'react-native-modalize'
 import ModalizeLogout from '../../components/modalizes/ModalizeLogout'
@@ -12,6 +15,7 @@ import ModalizeOptionsThought from '../../components/modalizes/ModalizeOptionsTh
 import ModalizeDeleteThought from '../../components/modalizes/ModalizeDeleteThought'
 
 function Home() {
+    const groups = useGroups()
     const thoughts = useThoughts()
     const { modalize: modalizeLogout, props: propsLogout } = useModalize(60)
     const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70)
@@ -19,11 +23,18 @@ function Home() {
     const [thoughtSelected, setThoughtSelected] = useState<IThought>()
 
     return (
-        <ContainerDefault>
+        <ContainerDefault scroll>
+            <FlashList
+                data={groups}
+                estimatedItemSize={70}
+                ListHeaderComponentStyle={{ paddingBottom: '10%' }}
+                ListHeaderComponent={<HeaderBack settings icon="logout" onPress={modalizeLogout.open}>Pensamentos</HeaderBack>}
+                renderItem={({ index, item }) => <Group index={index} group={item}/>}
+            />
             <FlashList
                 data={thoughts}
                 estimatedItemSize={70}
-                ListHeaderComponent={<Header onPress={modalizeLogout.open}/>}
+                ListHeaderComponent={<HeaderThoughts/>}
                 renderItem={({ index, item }) => <Thought index={index} thought={item} onLongPress={() => {
                     setThoughtSelected(item)
                     
