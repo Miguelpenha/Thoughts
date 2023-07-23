@@ -7,6 +7,7 @@ import ContainerDefault from '../../components/ContainerDefault'
 import { FlashList } from '@shopify/flash-list'
 import HeaderBack from '../../components/HeaderBack'
 import Group from '../../components/Group'
+import { Message } from './style'
 import HeaderThoughts from './HeaderThoughts'
 import Thought from '../../components/Thought'
 import { Modalize } from 'react-native-modalize'
@@ -28,8 +29,13 @@ function Home() {
                 data={groups}
                 estimatedItemSize={70}
                 ListHeaderComponentStyle={{ paddingBottom: '10%' }}
-                ListHeaderComponent={<HeaderBack settings icon="logout" onPress={modalizeLogout.open}>Pensamentos</HeaderBack>}
                 renderItem={({ index, item }) => <Group index={index} group={item}/>}
+                ListHeaderComponent={<>
+                    <HeaderBack settings icon="logout" onPress={modalizeLogout.open}>Pensamentos</HeaderBack>
+                    {(!groups.length || !thoughts.length) && (
+                        <Message>Ainda não há {`${(!groups.length && !thoughts.length) ? 'grupos e pensamentos' : (groups.length && !thoughts.length) ? 'pensamentos' : 'grupos'}`} cadastrados</Message>
+                    )}
+                </>}
             />
             <FlashList
                 data={thoughts}
