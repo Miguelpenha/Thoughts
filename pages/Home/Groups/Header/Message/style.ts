@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import Animated from 'react-native-reanimated'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-export const Message = styled(Animated.Text)`
+export const Container = styled(Animated.Text)`
     width: 90%;
     padding: 4%;
     margin-top: 20%;

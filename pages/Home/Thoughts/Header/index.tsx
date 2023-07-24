@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native'
-import ButtonIcon from '../../../components/buttons/ButtonIcon'
+import ButtonIcon from '../../../../components/buttons/ButtonIcon'
 import { IconAdd } from './style'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-function HeaderThoughts() {
+function Header() {
     const navigation = useNavigation()
 
     return (
@@ -13,4 +13,4 @@ function HeaderThoughts() {
     )
 }
 
-export default HeaderThoughts
+export default Header

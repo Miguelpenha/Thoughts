@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-modalize/lib/index.js b/node_modules/react-native-modalize/lib/index.js
+index 5d5edac..d4c61c0 100644
+--- a/node_modules/react-native-modalize/lib/index.js
++++ b/node_modules/react-native-modalize/lib/index.js
+@@ -657,7 +657,7 @@ onOpen, onOpened, onClose, onClosed, onBackButtonPress, onPositionChange, onOver
+     if (!avoidKeyboardLikeIOS && !adjustToContentHeight) {
+         keyboardAvoidingViewProps.onLayout = handleModalizeContentLayout;
+     }
+-    const renderModalize = (React.createElement(react_native_1.View, { style: [styles_1.default.modalize, rootStyle], pointerEvents: alwaysOpen || !withOverlay ? 'box-none' : 'auto' },
++    const renderModalize = React.createElement(react_native_gesture_handler_1.GestureHandlerRootView, { style: react_native_1.StyleSheet.absoluteFill }, React.createElement(react_native_1.View, { style: [styles_1.default.modalize, rootStyle], pointerEvents: alwaysOpen || !withOverlay ? 'box-none' : 'auto' },
+         React.createElement(react_native_gesture_handler_1.TapGestureHandler, { ref: tapGestureModalizeRef, maxDurationMs: tapGestureEnabled ? 100000 : 50, maxDeltaY: lastSnap, enabled: panGestureEnabled },
+             React.createElement(react_native_1.View, { style: styles_1.default.modalize__wrapper, pointerEvents: "box-none" },
+                 showContent && (React.createElement(AnimatedKeyboardAvoidingView, Object.assign({}, keyboardAvoidingViewProps),

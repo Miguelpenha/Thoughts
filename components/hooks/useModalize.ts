@@ -8,12 +8,13 @@ interface IModalize extends ModalizeProps {
     ref: RefObject<IHandles>
 }
 
-function useModalize(height: number=60, snapPoint: number=0) {
+function useModalize(height: number=60, snapPoint: number=0, top: boolean=false) {
     const modalize = useModalizeRaw()
     const theme = useTheme()
 
     const props: IModalize = {
         ref: modalize.ref,
+        withReactModal: top,
         modalHeight: RFPercentage(height),
         snapPoint: RFPercentage(snapPoint),
         modalStyle: { backgroundColor: theme.backgroundColor },
