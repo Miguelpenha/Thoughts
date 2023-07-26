@@ -3,11 +3,13 @@ import { RefObject } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import { IOption } from './type'
 import useNavigateVerified from '../../hooks/useNavigateVerified'
+import useShowQRCode from '../../hooks/useShowQRCode'
 import useShareThought from '../../hooks/useShareThought'
 import useChangeSecure from '../../hooks/useChangeSecure'
 
-function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>): IOption[] {
+function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeQRCode: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>): IOption[] {
     const navigateVerified = useNavigateVerified()
+    const showQRCode = useShowQRCode(thought)
     const shareThought = useShareThought(thought)
     const changeSecure = useChangeSecure(thought)
 
@@ -28,7 +30,15 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeDe
         {
             icon: 'qr-code-2',
             title: 'QR code',
-            onPress: () => {}
+            onPress: async () => {
+                const isShow = await showQRCode()
+                
+                if (isShow) {
+                    modalize.current.close()
+
+                    modalizeQRCode.current.open()
+                }
+            }
         },
         {
             icon: 'lock',

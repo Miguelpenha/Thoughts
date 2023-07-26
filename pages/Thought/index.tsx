@@ -7,6 +7,7 @@ import useAnimation from './useAnimation'
 import useNavigateVerified from '../../components/hooks/useNavigateVerified'
 import useShareThought from '../../components/hooks/useShareThought'
 import useChangeSecure from '../../components/hooks/useChangeSecure'
+import useShowQRCode from '../../components/hooks/useShowQRCode'
 import useModalize from '../../components/hooks/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
@@ -17,6 +18,7 @@ import ButtonIconCancel from '../../components/buttons/ButtonIconCancel'
 import ButtonIcon from '../../components/buttons/ButtonIcon'
 import { Modalize } from 'react-native-modalize'
 import ModalizeDeleteThought from '../../components/modalizes/ModalizeDeleteThought'
+import ModalizeQRCode from '../../components/modalizes/ModalizeQRCode'
 
 interface IParams {
     thoughtID: string
@@ -32,7 +34,18 @@ function Thought() {
     const navigateVerified = useNavigateVerified()
     const shareThought = useShareThought(thought)
     const changeSecure = useChangeSecure(thought)
-    const { props, modalize: modalizeDeleteThought } = useModalize(60, 60)
+    const showQRCode = useShowQRCode(thought)
+    const { props: propsDeleteThought, modalize: modalizeDeleteThought } = useModalize(60, 60)
+    const { props: propsQRCode, modalize: modalizeQRCode } = useModalize(90, 75, true)
+    const [positionModalizeQRCode, setPositionModalizeQRCode] = useState<'initial' | 'top'>('initial')
+
+    async function handleQRCode() {
+        const isShow = await showQRCode()
+                
+        if (isShow) {
+            modalizeQRCode.open()
+        }
+    }
 
     if (thought) {
         return (
@@ -56,9 +69,15 @@ function Thought() {
                     <ButtonIcon index={4} onPress={changeSecure}>
                         <Icon name={thought.secure ? 'lock-open' : 'lock'} size={RFPercentage(5)}/>
                     </ButtonIcon>
+                    <ButtonIcon index={5} onPress={handleQRCode}>
+                        <Icon name="qr-code-2" size={RFPercentage(5)}/>
+                    </ButtonIcon>
                 </Options>
-                <Modalize {...props}>
+                <Modalize {...propsDeleteThought}>
                     <ModalizeDeleteThought thought={thought} modalize={modalizeDeleteThought.ref}/>
+                </Modalize>
+                <Modalize onClosed={() => setPositionModalizeQRCode('initial')} onPositionChange={setPositionModalizeQRCode} {...propsQRCode}>
+                    <ModalizeQRCode position={positionModalizeQRCode} thought={thought} modalize={modalizeQRCode.ref}/>
                 </Modalize>
             </ContainerDefault>
         )

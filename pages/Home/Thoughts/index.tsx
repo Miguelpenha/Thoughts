@@ -6,6 +6,7 @@ import Header from './Header'
 import Thought from '../../../components/Thought'
 import { Modalize } from 'react-native-modalize'
 import ModalizeOptionsThought from '../../../components/modalizes/ModalizeOptionsThought'
+import ModalizeQRCode from '../../../components/modalizes/ModalizeQRCode'
 import ModalizeDeleteThought from '../../../components/modalizes/ModalizeDeleteThought'
 
 interface IProps {
@@ -14,8 +15,10 @@ interface IProps {
 
 const Thoughts: FC<IProps> = ({ thoughts }) => {
     const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70, true)
+    const { modalize: modalizeQRCode, props: propsQRCode } = useModalize(90, 75, true)
     const { modalize: modalizeDelete, props: propsDelete } = useModalize(60, 0, true)
     const [thoughtSelected, setThoughtSelected] = useState<IThought>()
+    const [positionModalizeQRCode, setPositionModalizeQRCode] = useState<'initial' | 'top'>('initial')
 
     function handleLongPress(item: IThought) {
         setThoughtSelected(item)
@@ -36,7 +39,11 @@ const Thoughts: FC<IProps> = ({ thoughts }) => {
                     thought={thoughtSelected}
                     modalize={modalizeOptions.ref}
                     modalizeDelete={modalizeDelete.ref}
+                    modalizeQRCode={modalizeQRCode.ref}
                 />
+            </Modalize>
+            <Modalize onClosed={() => setPositionModalizeQRCode('initial')} onPositionChange={setPositionModalizeQRCode} {...propsQRCode}>
+                <ModalizeQRCode position={positionModalizeQRCode} thought={thoughtSelected} modalize={modalizeQRCode.ref}/>
             </Modalize>
             <Modalize {...propsDelete}>
                 <ModalizeDeleteThought thought={thoughtSelected} modalize={modalizeDelete.ref}/>
