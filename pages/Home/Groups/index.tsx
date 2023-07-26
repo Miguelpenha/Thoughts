@@ -14,7 +14,7 @@ interface IProps {
 
 const Groups: FC<IProps> = ({ thoughts }) => {
     const groups = useGroups()
-    const { modalize: modalizeLogout, props: propsLogout } = useModalize(60)
+    const { modalize: modalizeLogout, props: propsLogout } = useModalize(60, 0, true)
 
     return (
         <>
