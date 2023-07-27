@@ -38,7 +38,9 @@
     "react-native-uuid": "^2.0.1",
     "styled-components": "^5.3.9",
     "react-native-view-shot": "3.7.0",
-    "expo-media-library": "~15.4.1"
+    "expo-media-library": "~15.4.1",
+    "expo-barcode-scanner": "~12.5.3",
+    "expo-document-picker": "~11.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",

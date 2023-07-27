@@ -1,5 +1,6 @@
-import useModalize from '../../components/hooks/useModalize'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { useState } from 'react'
+import useModalize from '../../components/hooks/useModalize'
 import modalizeMenuIcons from '../../components/modalizes/modalizeMenuIcons'
 import Container from './Container'
 import HeaderBack from '../../components/HeaderBack'
@@ -11,23 +12,29 @@ import Form from './Form'
 import { Modalize } from 'react-native-modalize'
 import ModalizeSelectedGroup from '../../components/modalizes/ModalizeSelectedGroup'
 
+interface IParams {
+    QRCode?: string
+}
+
 function CreateThought() {
+    const navigation = useNavigation()
     const [height, setHeight] = useState(90)
     const { modalize: modalizeMenuIconsRef, props: propsModalizeMenuIcons } = useModalize(height, 55)
     const [icon, setIcon] = useState('book')
     const modalizeMenuIconsProps = modalizeMenuIcons(setHeight, modalizeMenuIconsRef.ref, setIcon)
     const [group, setGroup] = useState('')
     const { modalize: modalizeSelectedGroup, props: propsModalizeSelectedGroup } = useModalize(70)
+    const params = useRoute().params as IParams
 
     return (
         <>
             <Container>
-                <HeaderBack right iconRight="qr-code-2" onPressRight={() => {}}>Criar pensamento</HeaderBack>
+                <HeaderBack right iconRight="qr-code-2" onPressRight={() => navigation.navigate('ReadQRCode')}>Criar pensamento</HeaderBack>
                 <ButtonIcon onPress={() => modalizeMenuIconsRef.open()}>
                     <IconMenuIcons size={RFPercentage(5)} name={icon}/>
                 </ButtonIcon>
                 <SelectedGroup group={group} modalize={modalizeSelectedGroup.ref}/>
-                <Form icon={icon} group={group}/>
+                <Form QRCode={params && params.QRCode} icon={icon} group={group}/>
             </Container>
             <Modalize onClosed={() => setHeight(90)} {...propsModalizeMenuIcons} {...modalizeMenuIconsProps}/>
             <Modalize ref={modalizeSelectedGroup.ref} {...propsModalizeSelectedGroup}>

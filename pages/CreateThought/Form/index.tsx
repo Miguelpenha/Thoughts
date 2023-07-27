@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import useHandleSubmit from './useHandleSubmit'
 import { Container, Field, Label } from './style'
@@ -12,14 +12,21 @@ import Icon from '../../../components/Icon'
 interface IProps {
     icon: string
     group: string
+    QRCode?: string
 }
 
-const Form: FC<IProps> = ({ icon, group }) => {
+const Form: FC<IProps> = ({ QRCode, icon, group }) => {
     const [name, setName] = useState('')
-    const [text, setText] = useState('')
+    const [text, setText] = useState(QRCode || '')
     const [secure, setSecure] = useState(true)
     const theme = useTheme()
     const handleSubmit = useHandleSubmit(name, text, secure, icon, group)
+
+    useEffect(() => {
+        if (QRCode) {
+            setText(QRCode)
+        }
+    }, [QRCode])
 
     return (
         <Container entering={FadeInDown.delay(200).duration(400)}>

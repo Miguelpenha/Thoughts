@@ -2,8 +2,11 @@ type INavigation = {
     Home: undefined
     Login: undefined
     Settings: undefined
+    ReadQRCode: undefined
     CreateGroup: undefined
-    CreateThought: undefined
+    CreateThought: {
+        QRCode?: string
+    }
     ImportThoughts: undefined
     Thought: {
         thoughtID: string

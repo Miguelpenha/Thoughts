@@ -54,8 +54,20 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-media-library',
       {
         isAccessMediaLocationEnabled: true,
-        photosPermission: 'Permita $(PRODUCT_NAME) acessar suas fotos.',
-        savePhotosPermission: 'Permita o $(PRODUCT_NAME) salvar fotos.'
+        photosPermission: 'Permita Thoughts acessar suas fotos.',
+        savePhotosPermission: 'Permita Thoughts salvar fotos.'
+      }
+    ],
+    [
+      'expo-barcode-scanner',
+      {
+        cameraPermission: 'Permita Thoughts acessar a câmera.'
+      }
+    ],
+    [
+      'expo-document-picker',
+      {
+        iCloudContainerEnvironment: 'Production'
       }
     ]
   ]

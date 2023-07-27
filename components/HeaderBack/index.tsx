@@ -19,6 +19,7 @@ interface Iprops {
 const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', children, right=false, iconRight='settings', onPressRight }) => {
     const navigation = useNavigation()
     const animation = useAnimation()
+    const navigateSettings = () => navigation.navigate('Settings')
 
     return (
         <Container entering={FadeInUp}>
@@ -29,7 +30,7 @@ const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', chi
             </ContainerIcon>
             <Title>{limitText(children, 25)}</Title>
             {right && (
-                <ContainerIconRight onPress={() => onPressRight || navigation.navigate('Settings')}>
+                <ContainerIconRight onPress={onPressRight || navigateSettings}>
                     <Icon name={iconRight} size={28}/>
                 </ContainerIconRight>
             )}
