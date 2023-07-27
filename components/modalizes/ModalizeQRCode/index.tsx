@@ -34,7 +34,7 @@ const ModalizeQRCode: FC<IProps> = ({ position, thought, modalize }) => {
                 data={thought.text}
                 color={theme.primary}
                 errorCorrectionLevel="H"
-                pieceSize={RFPercentage(1.1)}
+                pieceSize={RFPercentage(1)}
                 logo={{
                     scale: 1,
                     hidePieces: false,
