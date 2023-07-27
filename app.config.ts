@@ -49,6 +49,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       {
         faceIDPermission: 'Permita Thoughts usar o Face ID.'
       }
+    ],
+    [
+      'expo-media-library',
+      {
+        isAccessMediaLocationEnabled: true,
+        photosPermission: 'Permita $(PRODUCT_NAME) acessar suas fotos.',
+        savePhotosPermission: 'Permita o $(PRODUCT_NAME) salvar fotos.'
+      }
     ]
   ]
 })

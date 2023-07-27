@@ -1,9 +1,11 @@
 import { IThought } from '../../../types'
-import { RefObject, FC } from 'react'
+import { RefObject, FC, useRef } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import { useTheme } from 'styled-components'
 import useAnimation from './useAnimation'
-import { Container, QRCode } from './style'
+import { Svg } from 'react-native-svg'
+import useHandleDownload from './useHandleDownload'
+import { ButtonDownload, IconDownload, Container, QRCode } from './style'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Button from '../../buttons/Button'
 import Icon from '../../Icon'
@@ -17,11 +19,17 @@ interface IProps {
 const ModalizeQRCode: FC<IProps> = ({ position, thought, modalize }) => {
     const theme = useTheme()
     const animation = useAnimation(position)
+    const refQRCode = useRef<Svg>(null)
+    const handleDownload = useHandleDownload(refQRCode, modalize)
 
     return <>
+        <ButtonDownload onPress={handleDownload}>
+            <IconDownload name="file-download" size={RFPercentage(6)}/>
+        </ButtonDownload>
         <Container {...animation}>
             <QRCode
                 padding={20}
+                ref={refQRCode}
                 pieceScale={1.04}
                 data={thought.text}
                 color={theme.primary}
