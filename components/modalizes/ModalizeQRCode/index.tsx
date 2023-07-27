@@ -4,6 +4,7 @@ import { IHandles } from 'react-native-modalize/lib/options'
 import { useTheme } from 'styled-components'
 import useAnimation from './useAnimation'
 import { Container, QRCode } from './style'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 import Button from '../../buttons/Button'
 import Icon from '../../Icon'
 
@@ -21,11 +22,11 @@ const ModalizeQRCode: FC<IProps> = ({ position, thought, modalize }) => {
         <Container {...animation}>
             <QRCode
                 padding={20}
-                pieceSize={6}
                 pieceScale={1.04}
                 data={thought.text}
                 color={theme.primary}
                 errorCorrectionLevel="H"
+                pieceSize={RFPercentage(1.1)}
                 logo={{
                     scale: 1,
                     hidePieces: false,
