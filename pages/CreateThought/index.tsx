@@ -22,7 +22,7 @@ function CreateThought() {
     return (
         <>
             <Container>
-                <HeaderBack>Criar pensamento</HeaderBack>
+                <HeaderBack right iconRight="qr-code-2" onPressRight={() => {}}>Criar pensamento</HeaderBack>
                 <ButtonIcon onPress={() => modalizeMenuIconsRef.open()}>
                     <IconMenuIcons size={RFPercentage(5)} name={icon}/>
                 </ButtonIcon>

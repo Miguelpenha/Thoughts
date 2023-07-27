@@ -13,7 +13,7 @@ interface IProps {
 const Header: FC<IProps> = ({ modalize, groups, thoughts }) => {
     return (
         <>
-            <HeaderBack settings icon="logout" onPress={modalize.current?.open}>Pensamentos</HeaderBack>
+            <HeaderBack right icon="logout" onPress={modalize.current?.open}>Pensamentos</HeaderBack>
             <Message groups={groups} thoughts={thoughts}/>
         </>
     )

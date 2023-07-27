@@ -23,7 +23,7 @@ export const Title = styled.Text`
     color: ${props => props.theme.primary};
 `
 
-export const ContainerIconSettings = styled.TouchableOpacity`
+export const ContainerIconRight = styled.TouchableOpacity`
     margin-right: 4%;
     margin-left: auto;
     align-self: center;

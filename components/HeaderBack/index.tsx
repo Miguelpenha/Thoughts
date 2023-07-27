@@ -2,19 +2,21 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import useAnimation from './useAnimation'
-import { Container, ContainerIcon, Icon, Title, ContainerIconSettings, Line } from './style'
+import { Container, ContainerIcon, Icon, Title, ContainerIconRight, Line } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import limitText from '../../utils/limitText'
 
 interface Iprops {
     back?: boolean
+    right?: boolean
     children?: string
-    settings?: boolean
     onPress?: () => void
+    onPressRight?: () => void
     icon?: keyof typeof MaterialIcons.glyphMap
+    iconRight?: keyof typeof MaterialIcons.glyphMap
 }
 
-const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', children, settings=false }) => {
+const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', children, right=false, iconRight='settings', onPressRight }) => {
     const navigation = useNavigation()
     const animation = useAnimation()
 
@@ -26,10 +28,10 @@ const HeaderBack: FC<Iprops> = ({ back=true, onPress, icon='arrow-back-ios', chi
                 )}
             </ContainerIcon>
             <Title>{limitText(children, 25)}</Title>
-            {settings && (
-                <ContainerIconSettings onPress={() => navigation.navigate('Settings')}>
-                    <Icon name="settings" size={28}/>
-                </ContainerIconSettings>
+            {right && (
+                <ContainerIconRight onPress={() => onPressRight || navigation.navigate('Settings')}>
+                    <Icon name={iconRight} size={28}/>
+                </ContainerIconRight>
             )}
             <Line style={animation}/>
         </Container>
