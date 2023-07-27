@@ -22,7 +22,7 @@ function useOptions(modalize: RefObject<IHandles>) {
                     await Share.share({
                         message: JSON.stringify(thoughts)
                     })  
-                }, 80)
+                }, 100)
             } else {
                 await Clipboard.setStringAsync(JSON.stringify(thoughts))
 
