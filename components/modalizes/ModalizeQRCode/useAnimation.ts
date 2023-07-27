@@ -3,7 +3,7 @@ import { useSharedValue, withTiming, useAnimatedStyle, ZoomIn } from 'react-nati
 function useAnimation(position: 'initial' | 'top') {
     const scale = useSharedValue(1)
     const margin = useSharedValue(10)
-    const animationInitial = ZoomIn.duration(200).delay(200)
+    const animationInitial = ZoomIn.duration(400).delay(300)
 
     const animatedStyle = useAnimatedStyle(() => {
         if (position === 'initial') {
