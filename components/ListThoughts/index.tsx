@@ -28,7 +28,7 @@ const ListThoughts: FC<IProps> = ({ group, thoughts }) => {
                 estimatedItemSize={70}
                 ListHeaderComponent={<Header group={group}/>}
                 renderItem={({ index, item }) => (
-                    (!group || item.group === group) && (
+                    (group ? item.group === group : !item.group) && (
                         <Thought
                             index={index}
                             thought={item}
