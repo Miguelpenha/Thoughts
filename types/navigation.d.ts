@@ -4,15 +4,19 @@ type INavigation = {
     Settings: undefined
     ReadQRCode: undefined
     CreateGroup: undefined
-    CreateThought: {
-        QRCode?: string
-    }
     ImportThoughts: undefined
+    Group: {
+        groupName: string
+    }
     Thought: {
         thoughtID: string
     }
     EditThought: {
         thoughtID: string
+    }
+    CreateThought: {
+        QRCode?: string
+        groupName?: string
     }
 }
 

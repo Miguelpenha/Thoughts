@@ -1,0 +1,39 @@
+import useModalize, { IModalize } from '../hooks/useModalize'
+import { IThought } from '../../types'
+import { FC, useState } from 'react'
+import { Modalize } from 'react-native-modalize'
+import ModalizeOptionsThought from '../modalizes/ModalizeOptionsThought'
+import ModalizeQRCode from '../modalizes/ModalizeQRCode'
+import ModalizeDeleteThought from '../modalizes/ModalizeDeleteThought'
+
+interface IProps {
+    propsOptions: IModalize
+    thoughtSelected: IThought
+}
+
+const Modalizes: FC<IProps> = ({ propsOptions, thoughtSelected }) => {
+    const { modalize: modalizeQRCode, props: propsQRCode } = useModalize(90, 75, true)
+    const { modalize: modalizeDelete, props: propsDelete } = useModalize(60, 0, true)
+    const [positionModalizeQRCode, setPositionModalizeQRCode] = useState<'initial' | 'top'>('initial')
+
+    return (
+        <>
+            <Modalize {...propsOptions}>
+                <ModalizeOptionsThought
+                    thought={thoughtSelected}
+                    modalize={propsOptions.ref}
+                    modalizeDelete={modalizeDelete.ref}
+                    modalizeQRCode={modalizeQRCode.ref}
+                />
+            </Modalize>
+            <Modalize onClosed={() => setPositionModalizeQRCode('initial')} onPositionChange={setPositionModalizeQRCode} {...propsQRCode}>
+                <ModalizeQRCode position={positionModalizeQRCode} thought={thoughtSelected} modalize={modalizeQRCode.ref}/>
+            </Modalize>
+            <Modalize {...propsDelete}>
+                <ModalizeDeleteThought thought={thoughtSelected} modalize={modalizeDelete.ref}/>
+            </Modalize>
+        </>
+    )
+}
+
+export default Modalizes

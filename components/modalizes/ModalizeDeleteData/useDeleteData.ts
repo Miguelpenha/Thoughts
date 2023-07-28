@@ -1,4 +1,4 @@
-import useAuth from '../../contexts/authContext'
+import useAuth from '../../../contexts/authContext'
 import * as LocalAuthentication from 'expo-local-authentication'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Toast from 'react-native-toast-message'

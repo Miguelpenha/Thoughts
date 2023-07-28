@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import { INavigation } from '../types'
 import Home from '../pages/Home'
+import Group from '../pages/Group'
 import Thought from '../pages/Thought'
 import Settings from '../pages/Settings'
 import ReadQRCode from '../pages/ReadQRCode'
@@ -20,6 +21,7 @@ function MainStack() {
             }}
         >
             <Screen name="Home" component={Home}/>
+            <Screen name="Group" component={Group}/>
             <Screen name="Thought" component={Thought}/>
             <Screen name="Settings" component={Settings}/>
             <Screen name="ReadQRCode" component={ReadQRCode}/>

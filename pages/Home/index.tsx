@@ -1,7 +1,7 @@
 import useThoughts from '../../services/useThoughts'
 import Container from '../../components/ContainerDefault'
 import Groups from './Groups'
-import Thoughts from './Thoughts'
+import ListThoughts from '../../components/ListThoughts'
 
 function Home() {
     const thoughts = useThoughts()
@@ -9,7 +9,7 @@ function Home() {
     return (
         <Container scroll>
             <Groups thoughts={thoughts}/>
-            <Thoughts thoughts={thoughts}/>
+            <ListThoughts thoughts={thoughts}/>
         </Container>
     )
 }

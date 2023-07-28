@@ -4,11 +4,9 @@ function useOnPress(group: string) {
     const navigation = useNavigation()
 
     async function onPress() {
-        /*
         navigation.navigate('Group', {
-            group
+            groupName: group
         })
-        */
     }
 
     return onPress

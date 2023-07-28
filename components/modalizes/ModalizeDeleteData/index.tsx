@@ -1,6 +1,6 @@
 import { RefObject, FC } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
-import useDeleteData from '../../hooks/useDeleteData'
+import useDeleteData from './useDeleteData'
 import { Title } from './style'
 import { FadeInUp } from 'react-native-reanimated'
 import ButtonCancel from '../../buttons/ButtonCancel'

@@ -4,7 +4,7 @@ import { IHandles } from 'react-native-modalize/lib/options'
 import { useTheme } from 'styled-components'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-interface IModalize extends ModalizeProps {
+export interface IModalize extends ModalizeProps {
     ref: RefObject<IHandles>
 }
 
