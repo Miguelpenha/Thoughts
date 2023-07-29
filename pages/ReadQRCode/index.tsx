@@ -1,3 +1,5 @@
+import { INavigation } from '../../types'
+import { useRoute } from '@react-navigation/native'
 import useReadQRCode from './useReadQRCode'
 import useHandleSelectQRCode from './useHandleSelectQRCode'
 import usePermission from './usePermission'
@@ -8,8 +10,13 @@ import { Title, Square } from './style'
 import { View, StyleSheet } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 
+interface IParams {
+    page: keyof INavigation
+}
+
 function ReadQRCode() {
-    const { readQRCode } = useReadQRCode()
+    const { page } = useRoute().params as IParams
+    const { readQRCode } = useReadQRCode(page)
     const handleSelectQRCode = useHandleSelectQRCode(readQRCode)
     const permission = usePermission()
     const animationTitle = FadeIn.duration(300).delay(200)

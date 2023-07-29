@@ -28,6 +28,12 @@ const ModalizeSelectedGroup: FC<IProps> = ({ modalize, setGroup }) => {
             <ButtonIcon onPress={() => navigation.navigate('CreateGroup')}>
                 <IconAdd name="add" size={RFPercentage(5)}/>
             </ButtonIcon>
+            <Button
+                title="Nenhum grupo"
+                key={groups.length+1}
+                index={groups.length+1}
+                onPress={() => handlePress('')}
+            />
             {groups.length ? groups.map((group, index) => 
                 <Button title={group} key={index} index={index} onPress={() => handlePress(group)}/>
             ) : (

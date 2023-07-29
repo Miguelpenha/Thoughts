@@ -1,5 +1,4 @@
-import { IThought } from '../../../types'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import useHandleSubmit from './useHandleSubmit'
 import { Container, Field, Label } from './style'
@@ -9,18 +8,27 @@ import Animated from 'react-native-reanimated'
 import Switch from '../../../components/Switch'
 import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
 import Icon from '../../../components/Icon'
+import { IThought } from '../../../types'
 
 interface IProps {
     icon: string
+    group: string
+    QRCode?: string
     thought: IThought
 }
 
-const Form: FC<IProps> = ({ icon, thought }) => {
+const Form: FC<IProps> = ({ QRCode, icon, group, thought }) => {
     const [name, setName] = useState(thought.name)
-    const [text, setText] = useState(thought.text)
+    const [text, setText] = useState(QRCode || thought.text || '')
     const [secure, setSecure] = useState(thought.secure)
     const theme = useTheme()
-    const handleSubmit = useHandleSubmit(thought, name, text, secure, icon)
+    const handleSubmit = useHandleSubmit(thought, name, text, secure, icon, group)
+
+    useEffect(() => {
+        if (QRCode) {
+            setText(QRCode)
+        }
+    }, [QRCode])
 
     return (
         <Container entering={FadeInDown.delay(200).duration(400)}>

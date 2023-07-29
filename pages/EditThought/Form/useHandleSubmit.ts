@@ -3,7 +3,7 @@ import useEditThought from '../../../services/useEditThought'
 import { useNavigation } from '@react-navigation/native'
 import Toast from 'react-native-toast-message'
 
-function useHandleSubmit(thoughtOriginal: IThought, name: string, text: string, secure: boolean, icon: string) {
+function useHandleSubmit(thoughtOriginal: IThought, name: string, text: string, secure: boolean, icon: string, group?: string) {
     const editThought = useEditThought(thoughtOriginal)
     const navigation = useNavigation()
 
@@ -13,7 +13,8 @@ function useHandleSubmit(thoughtOriginal: IThought, name: string, text: string, 
                 name,
                 text,
                 secure,
-                icon: icon as any
+                icon: icon as any,
+                group: group || undefined
             })
 
             Toast.show({

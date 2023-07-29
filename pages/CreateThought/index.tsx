@@ -30,7 +30,9 @@ function CreateThought() {
     return (
         <>
             <Container>
-                <HeaderBack right iconRight="qr-code-2" onPressRight={() => navigation.navigate('ReadQRCode')}>
+                <HeaderBack right iconRight="qr-code-2" onPressRight={() => navigation.navigate('ReadQRCode', {
+                    page: 'CreateGroup'
+                })}>
                     {`Criar pensamento ${group ? `(${group})` : ''}`}
                 </HeaderBack>
                 <ButtonIcon onPress={() => modalizeMenuIconsRef.open()}>
