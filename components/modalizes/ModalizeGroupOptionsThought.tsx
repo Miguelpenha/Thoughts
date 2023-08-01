@@ -2,16 +2,16 @@ import useModalize, { IModalize } from '../hooks/useModalize'
 import { IThought } from '../../types'
 import { FC, useState } from 'react'
 import { Modalize } from 'react-native-modalize'
-import ModalizeOptionsThought from '../modalizes/ModalizeOptionsThought'
-import ModalizeQRCode from '../modalizes/ModalizeQRCode'
-import ModalizeDeleteThought from '../modalizes/ModalizeDeleteThought'
+import ModalizeOptionsThought from './ModalizeOptionsThought'
+import ModalizeQRCode from './ModalizeQRCode'
+import ModalizeDeleteThought from './ModalizeDeleteThought'
 
 interface IProps {
     propsOptions: IModalize
     thoughtSelected: IThought
 }
 
-const Modalizes: FC<IProps> = ({ propsOptions, thoughtSelected }) => {
+const ModalizeGroupOptionsThought: FC<IProps> = ({ propsOptions, thoughtSelected }) => {
     const { modalize: modalizeQRCode, props: propsQRCode } = useModalize(90, 75, true)
     const { modalize: modalizeDelete, props: propsDelete } = useModalize(60, 0, true)
     const [positionModalizeQRCode, setPositionModalizeQRCode] = useState<'initial' | 'top'>('initial')
@@ -36,4 +36,4 @@ const Modalizes: FC<IProps> = ({ propsOptions, thoughtSelected }) => {
     )
 }
 
-export default Modalizes
+export default ModalizeGroupOptionsThought

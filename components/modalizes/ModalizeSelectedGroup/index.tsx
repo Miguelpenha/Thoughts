@@ -5,6 +5,7 @@ import useGroups from '../../../services/useGroups'
 import ButtonIcon from '../../buttons/ButtonIcon'
 import { IconAdd, Message } from './style'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import ButtonCancel from '../../buttons/ButtonCancel'
 import Button from '../../buttons/Button'
 import { FadeInUp } from 'react-native-reanimated'
 
@@ -28,7 +29,7 @@ const ModalizeSelectedGroup: FC<IProps> = ({ modalize, setGroup }) => {
             <ButtonIcon onPress={() => navigation.navigate('CreateGroup')}>
                 <IconAdd name="add" size={RFPercentage(5)}/>
             </ButtonIcon>
-            <Button
+            <ButtonCancel
                 title="Nenhum grupo"
                 key={groups.length+1}
                 index={groups.length+1}

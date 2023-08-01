@@ -4,7 +4,7 @@ import useModalize from '../../components/hooks/useModalize'
 import { FlashList } from '@shopify/flash-list'
 import Header from './Header'
 import Thought from '../../components/Thought'
-import Modalizes from './Modalizes'
+import ModalizeGroupOptionsThought from '../modalizes/ModalizeGroupOptionsThought'
 
 interface IProps {
     group?: string
@@ -37,7 +37,7 @@ const ListThoughts: FC<IProps> = ({ group, thoughts }) => {
                     )
                 )}
             />
-            <Modalizes propsOptions={propsOptions} thoughtSelected={thoughtSelected}/>
+            <ModalizeGroupOptionsThought propsOptions={propsOptions} thoughtSelected={thoughtSelected}/>
         </>
     )
 }

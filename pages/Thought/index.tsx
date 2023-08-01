@@ -5,9 +5,6 @@ import useHandlePress from './useHandlePress'
 import useHandleLongPress from './useHandleLongPress'
 import useAnimation from './useAnimation'
 import useNavigateVerified from '../../components/hooks/useNavigateVerified'
-import useShareThought from '../../components/hooks/useShareThought'
-import useChangeSecure from '../../components/hooks/useChangeSecure'
-import useShowQRCode from '../../components/hooks/useShowQRCode'
 import useModalize from '../../components/hooks/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
@@ -18,7 +15,7 @@ import ButtonIconCancel from '../../components/buttons/ButtonIconCancel'
 import ButtonIcon from '../../components/buttons/ButtonIcon'
 import { Modalize } from 'react-native-modalize'
 import ModalizeDeleteThought from '../../components/modalizes/ModalizeDeleteThought'
-import ModalizeQRCode from '../../components/modalizes/ModalizeQRCode'
+import ModalizeGroupOptionsThought from '../../components/modalizes/ModalizeGroupOptionsThought'
 
 interface IParams {
     thoughtID: string
@@ -32,25 +29,13 @@ function Thought() {
     const handleLongPress = useHandleLongPress(thought)
     const animation = useAnimation(handleLongPress, handlePress)
     const navigateVerified = useNavigateVerified()
-    const shareThought = useShareThought(thought)
-    const changeSecure = useChangeSecure(thought)
-    const showQRCode = useShowQRCode(thought)
     const { props: propsDeleteThought, modalize: modalizeDeleteThought } = useModalize(60, 60)
-    const { props: propsQRCode, modalize: modalizeQRCode } = useModalize(90, 75, true)
-    const [positionModalizeQRCode, setPositionModalizeQRCode] = useState<'initial' | 'top'>('initial')
-
-    async function handleQRCode() {
-        const isShow = await showQRCode()
-                
-        if (isShow) {
-            modalizeQRCode.open()
-        }
-    }
+    const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70, true)
 
     if (thought) {
         return (
             <ContainerDefault>
-                <HeaderBack>{`${thought.name} ${thought.group ? `(${thought.group})` : ''}`}</HeaderBack>
+                <HeaderBack type="touchable" onPressContainer={() => {}}>{thought.name}</HeaderBack>
                 <ContainerText entering={FadeInDown.delay(100).duration(400)} activeOpacity={0.5} {...animation}>
                     <Text value={thought.text} editable={false} secureTextEntry={hidden}/>
                 </ContainerText>
@@ -63,22 +48,14 @@ function Thought() {
                     }}>
                         <Icon name="edit" size={RFPercentage(5)}/>
                     </ButtonIcon>
-                    <ButtonIcon index={3} onPress={shareThought}>
-                        <Icon name="share" size={RFPercentage(5)}/>
-                    </ButtonIcon>
-                    <ButtonIcon index={4} onPress={changeSecure}>
-                        <Icon name={thought.secure ? 'lock-open' : 'lock'} size={RFPercentage(5)}/>
-                    </ButtonIcon>
-                    <ButtonIcon index={5} onPress={handleQRCode}>
-                        <Icon name="qr-code-2" size={RFPercentage(5)}/>
+                    <ButtonIcon index={3} onPress={modalizeOptions.open}>
+                        <Icon name="more-vert" size={RFPercentage(5)}/>
                     </ButtonIcon>
                 </Options>
                 <Modalize {...propsDeleteThought}>
                     <ModalizeDeleteThought thought={thought} modalize={modalizeDeleteThought.ref}/>
                 </Modalize>
-                <Modalize onClosed={() => setPositionModalizeQRCode('initial')} onPositionChange={setPositionModalizeQRCode} {...propsQRCode}>
-                    <ModalizeQRCode position={positionModalizeQRCode} thought={thought} modalize={modalizeQRCode.ref}/>
-                </Modalize>
+                <ModalizeGroupOptionsThought propsOptions={propsOptions} thoughtSelected={thought}/>
             </ContainerDefault>
         )
     } else {

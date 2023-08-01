@@ -5,7 +5,7 @@ export const theme: ITheme = {
     color: '#c8bfe4',
     primary: '#8f77cd',
     success: '#28A645',
-    secondary: '#362d4d',
+    secondary: '#2c2744',
     secondaryColor: '#5a4b81',
     backgroundColor: '#13111b',
     backgroundColorSecondary: '#201b2d'
