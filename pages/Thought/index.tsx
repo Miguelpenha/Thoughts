@@ -26,7 +26,7 @@ function Thought() {
     const thought = getThought(thoughtID)
     const [hidden, setHidden] = useState(false)
     const handlePress = useHandlePress(thought, hidden, setHidden)
-    const handleLongPress = useHandleLongPress(thought)
+    const handleLongPress = useHandleLongPress(hidden, thought)
     const animation = useAnimation(handleLongPress, handlePress)
     const navigateVerified = useNavigateVerified()
     const { props: propsDeleteThought, modalize: modalizeDeleteThought } = useModalize(60, 60)
