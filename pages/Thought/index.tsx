@@ -9,7 +9,7 @@ import useModalize from '../../components/hooks/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
 import { ContainerText, Text, Options, IconCancel, Icon } from './style'
-import { FadeInDown } from 'react-native-reanimated'
+import { FadeInDown, CurvedTransition } from 'react-native-reanimated'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import ButtonIconCancel from '../../components/buttons/ButtonIconCancel'
 import ButtonIcon from '../../components/buttons/ButtonIcon'
@@ -36,8 +36,8 @@ function Thought() {
         return (
             <ContainerDefault>
                 <HeaderBack type="touchable" onPressContainer={() => {}}>{thought.name}</HeaderBack>
-                <ContainerText entering={FadeInDown.delay(100).duration(400)} activeOpacity={0.5} {...animation}>
-                    <Text value={thought.text} editable={false} secureTextEntry={hidden}/>
+                <ContainerText layout={CurvedTransition} entering={FadeInDown.delay(600).duration(400)} activeOpacity={0.5} {...animation}>
+                    <Text multiline={!hidden} value={thought.text} editable={false} secureTextEntry={hidden}/>
                 </ContainerText>
                 <Options>
                     <ButtonIconCancel index={1} onPress={() => modalizeDeleteThought.open()}>

@@ -31,7 +31,7 @@ function CreateThought() {
         <>
             <Container>
                 <HeaderBack right iconRight="qr-code-2" onPressRight={() => navigation.navigate('ReadQRCode', {
-                    page: 'CreateGroup'
+                    page: 'CreateThought'
                 })}>
                     {`Criar pensamento ${group ? `(${group})` : ''}`}
                 </HeaderBack>

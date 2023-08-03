@@ -9,7 +9,7 @@ interface IInputRaw {
 
 export const InputRaw = styled(Animated.createAnimatedComponent(TextInput))<IInputRaw>`
     padding: 4%;
-    font-size: ${RFPercentage(2.2)}px;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.color};
     width: ${props => props.secret ? 83 : 100}%;
     background-color: ${props => props.theme.backgroundColor};
