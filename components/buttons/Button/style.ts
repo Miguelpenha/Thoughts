@@ -18,6 +18,7 @@ export const Container = styled(Animated.createAnimatedComponent(TouchableOpacit
 
 export const Text = styled.Text`
     font-weight: bold;
+    text-align: center;
     font-size: ${RFPercentage(3.2)}px;
     color: ${props => props.theme.primary};
 `

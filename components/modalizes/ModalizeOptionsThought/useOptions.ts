@@ -28,8 +28,8 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeQR
             }
         },
         {
-            icon: 'qr-code-2',
             title: 'QR code',
+            icon: 'qr-code-2',
             onPress: async () => {
                 const isShow = await showQRCode()
                 
@@ -47,6 +47,21 @@ function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeQR
                 modalize.current.close()
 
                 await changeSecure()
+            }
+        },
+        {
+            icon: 'file-copy',
+            title: 'Usar como modelo',
+            onPress: async () => {
+                modalize.current.close()
+
+                const isSuccess = await navigateVerified('CreateThought', {
+                    thoughtID: thought.id
+                }, thought.secure)
+
+                if (isSuccess) {
+                    modalize.current.close()
+                }
             }
         },
         {

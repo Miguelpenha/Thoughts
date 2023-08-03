@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { useTheme } from 'styled-components'
 import useHandleSubmit from './useHandleSubmit'
 import { Container, Field, Label } from './style'
@@ -8,16 +8,20 @@ import Animated from 'react-native-reanimated'
 import Switch from '../../../components/Switch'
 import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
 import Icon from '../../../components/Icon'
+import { IThought } from '../../../types'
 
 interface IProps {
     icon: string
     group: string
     QRCode?: string
+    thought?: IThought
+    initialData: boolean
+    setInitialData: Dispatch<SetStateAction<boolean>>
 }
 
-const Form: FC<IProps> = ({ QRCode, icon, group }) => {
+const Form: FC<IProps> = ({ QRCode, icon, group, thought, initialData, setInitialData }) => {
     const [name, setName] = useState('')
-    const [text, setText] = useState(QRCode || '')
+    const [text, setText] = useState('')
     const [secure, setSecure] = useState(true)
     const theme = useTheme()
     const handleSubmit = useHandleSubmit(name, text, secure, icon, group)
@@ -27,6 +31,15 @@ const Form: FC<IProps> = ({ QRCode, icon, group }) => {
             setText(QRCode)
         }
     }, [QRCode])
+
+    useEffect(() => {
+        if (thought && !initialData) {
+            setName(thought.name)
+            setText(thought.text)
+            setSecure(thought.secure)
+            setInitialData(true)
+        }
+    }, [thought])
 
     return (
         <Container entering={FadeInDown.delay(200).duration(400)}>

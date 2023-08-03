@@ -19,6 +19,7 @@ type INavigation = {
     }
     CreateThought: {
         QRCode?: string
+        thoughtID?: string
         groupName?: string
     }
 }
