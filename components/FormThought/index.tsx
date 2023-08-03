@@ -1,34 +1,30 @@
-import { FC, useState, useEffect } from 'react'
+import { IThought } from '../../types'
+import { FC, useState } from 'react'
 import { useTheme } from 'styled-components'
 import useHandleSubmit from './useHandleSubmit'
+import useQRCode from './useQRCode'
 import { Container, Field, Label } from './style'
-import { FadeInDown } from 'react-native-reanimated'
-import Input from '../../../components/Input'
-import Animated from 'react-native-reanimated'
-import Switch from '../../../components/Switch'
-import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
-import Icon from '../../../components/Icon'
-import { IThought } from '../../../types'
+import Animated, { FadeInDown } from 'react-native-reanimated'
+import Input from '../Input'
+import Switch from '../Switch'
+import ButtonSubmit from '../buttons/ButtonSubmit'
+import Icon from '../Icon'
 
 interface IProps {
-    icon: string
-    group: string
     QRCode?: string
-    thought: IThought
+    thought?: IThought
+    titleSubmit: string
+    onSubmit: (name: string, text: string, secure: boolean) => Promise<void>
 }
 
-const Form: FC<IProps> = ({ QRCode, icon, group, thought }) => {
-    const [name, setName] = useState(thought.name)
-    const [text, setText] = useState(QRCode || thought.text || '')
-    const [secure, setSecure] = useState(thought.secure)
+const FormThought: FC<IProps> = ({ thought, QRCode, onSubmit, titleSubmit }) => {
+    const [name, setName] = useState(thought ? thought.name || '' : '')
     const theme = useTheme()
-    const handleSubmit = useHandleSubmit(thought, name, text, secure, icon, group)
+    const [text, setText] = useState(thought ? thought.text || '' : '')
+    const [secure, setSecure] = useState(Boolean(thought ? Boolean(thought.secure) : true))
+    const handleSubmit = useHandleSubmit(name, text, secure, onSubmit)
 
-    useEffect(() => {
-        if (QRCode) {
-            setText(QRCode)
-        }
-    }, [QRCode])
+    useQRCode(QRCode, setText)
 
     return (
         <Container entering={FadeInDown.delay(200).duration(400)}>
@@ -59,11 +55,11 @@ const Form: FC<IProps> = ({ QRCode, icon, group, thought }) => {
             <Animated.View entering={FadeInDown.delay(500).duration(400)}>
                 <Switch label="Seguro" setValue={setSecure} value={secure}/>
             </Animated.View>
-            <ButtonSubmit directionIcon="right" loading title="Editar" onPress={handleSubmit}>
+            <ButtonSubmit directionIcon="right" loading title={titleSubmit} onPress={handleSubmit}>
                 <Icon name="arrow-forward-ios" size={25} directionIcon="right"/>
             </ButtonSubmit>
         </Container>
     )
 }
 
-export default Form
+export default FormThought

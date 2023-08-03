@@ -30,12 +30,12 @@ const ModalizeSelectedGroup: FC<IProps> = ({ modalize, setGroup }) => {
                 <IconAdd name="add" size={RFPercentage(5)}/>
             </ButtonIcon>
             <ButtonCancel
-                index={1}
+                index={2}
                 title="Nenhum grupo"
                 onPress={() => handlePress('')}
             />
             {groups.length ? groups.map((group, index) => 
-                <Button title={group} key={index} index={index+1} onPress={() => handlePress(group)}/>
+                <Button title={group} key={index} index={index+2} onPress={() => handlePress(group)}/>
             ) : (
                 <Message entering={FadeInUp.duration(500).delay(300)}>Ainda não há grupos criados</Message>
             )}

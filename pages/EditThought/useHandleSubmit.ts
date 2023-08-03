@@ -1,13 +1,12 @@
-import { IThought } from '../../../types'
-import useEditThought from '../../../services/useEditThought'
+import useEditThought from '../../services/useEditThought'
 import { useNavigation } from '@react-navigation/native'
 import Toast from 'react-native-toast-message'
 
-function useHandleSubmit(thoughtOriginal: IThought, name: string, text: string, secure: boolean, icon: string, group?: string) {
-    const editThought = useEditThought(thoughtOriginal)
+function useHandleSubmit(thoughtID: string, icon: string, group: string) {
+    const editThought = useEditThought(thoughtID)
     const navigation = useNavigation()
 
-    async function handleSubmit() {
+    async function handleSubmit(name: string, text: string, secure: boolean) {
         if (name) {
             await editThought({
                 name,

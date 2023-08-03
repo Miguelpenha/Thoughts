@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import useModalize from '../../components/hooks/useModalize'
 import modalizeMenuIcons from '../../components/modalizes/modalizeMenuIcons'
 import Container from './Container'
@@ -8,10 +8,11 @@ import ButtonIcon from '../../components/buttons/ButtonIcon'
 import { IconMenuIcons } from './style'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import SelectedGroup from './SelectedGroup'
-import Form from './Form'
 import { Modalize } from 'react-native-modalize'
 import ModalizeSelectedGroup from '../../components/modalizes/ModalizeSelectedGroup'
 import getThought from '../../services/getThought'
+import FormThought from '../../components/FormThought'
+import useHandleSubmit from './useHandleSubmit'
 
 interface IParams {
     QRCode?: string
@@ -26,10 +27,23 @@ function CreateThought() {
     const params = useRoute().params as IParams
     const thought = getThought(params.thoughtID)
     const [icon, setIcon] = useState('book')
-    const [initialData, setInitialData] = useState(false)
+    const [initialData, setInitialData] = useState(true)
     const modalizeMenuIconsProps = modalizeMenuIcons(setHeight, modalizeMenuIconsRef.ref, setIcon)
     const { modalize: modalizeSelectedGroup, props: propsModalizeSelectedGroup } = useModalize(70)
     const [group, setGroup] = useState('')
+    const handleSubmit = useHandleSubmit(icon, group)
+
+    useEffect(() => {
+        if (thought && initialData) {
+            setIcon(thought.icon)
+            setGroup(thought.group)
+            setInitialData(false)
+        }
+
+        if (!params || !params.thoughtID) {
+            setInitialData(false)
+        }
+    }, [thought, initialData])
 
     useEffect(() => {
         if (params) {
@@ -38,22 +52,6 @@ function CreateThought() {
             }
         }
     }, [params])
-
-    useEffect(() => {
-        if (params.thoughtID) {
-            if (thought && !initialData) {
-                if (thought.group) {
-                    setGroup(thought.group)
-                }
-                
-                if (thought.icon) {
-                    setIcon(thought.icon)
-                }
-
-                setInitialData(true)
-            }
-        }
-    }, [params, thought])
     
     return (
         <>
@@ -67,7 +65,14 @@ function CreateThought() {
                     <IconMenuIcons size={RFPercentage(5)} name={icon}/>
                 </ButtonIcon>
                 <SelectedGroup group={group} modalize={modalizeSelectedGroup.ref}/>
-                <Form initialData={initialData} setInitialData={setInitialData} thought={thought} QRCode={params && params.QRCode} icon={icon} group={group}/>
+                {!initialData && (
+                    <FormThought
+                        thought={thought}
+                        QRCode={params.QRCode}
+                        onSubmit={handleSubmit}
+                        titleSubmit="Confirmar"
+                    />
+                )}
             </Container>
             <Modalize onClosed={() => setHeight(90)} {...propsModalizeMenuIcons} {...modalizeMenuIconsProps}/>
             <Modalize ref={modalizeSelectedGroup.ref} {...propsModalizeSelectedGroup}>

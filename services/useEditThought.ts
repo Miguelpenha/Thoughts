@@ -4,16 +4,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 type IThoughtEdited = Omit<IThought, 'id'>
 
-function useEditThought(thought: IThought) {
+function useEditThought(thoughtID: string) {
     const thoughts = useThoughts()
     
     async function editThought(thoughtEdited: IThoughtEdited) {
         const editedThoughts: IThought[] = []
 
         thoughts.map(thoughtMap => {
-            if (thoughtMap.id == thought.id) {
+            if (thoughtMap.id == thoughtID) {
                 editedThoughts.push({
-                    id: thought.id,
+                    id: thoughtID,
                     ...thoughtEdited
                 })
             } else {
