@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import useHandleSubmit from './useHandleSubmit'
 import { Container, Field, Label } from './style'
@@ -7,10 +7,20 @@ import Input from '../../../components/Input'
 import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
 import Icon from '../../../components/Icon'
 
-function Form() {
+interface IProps {
+    QRCode?: string
+}
+
+const Form: FC<IProps> = ({ QRCode }) => {
     const [name, setName] = useState('')
     const theme = useTheme()
     const handleSubmit = useHandleSubmit(name)
+
+    useEffect(() => {
+        if (QRCode) {
+            setName(QRCode)
+        }
+    }, [QRCode])
 
     return (
         <Container entering={FadeInDown.delay(200).duration(400)}>

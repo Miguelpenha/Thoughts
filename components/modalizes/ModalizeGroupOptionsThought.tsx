@@ -28,7 +28,7 @@ const ModalizeGroupOptionsThought: FC<IProps> = ({ propsOptions, thoughtSelected
                 />
             </Modalize>
             <Modalize onClosed={() => setPositionModalizeQRCode('initial')} onPositionChange={setPositionModalizeQRCode} {...propsQRCode}>
-                <ModalizeQRCode position={positionModalizeQRCode} thought={thoughtSelected} modalize={modalizeQRCode.ref}/>
+                <ModalizeQRCode position={positionModalizeQRCode} text={thoughtSelected && thoughtSelected.text} modalize={modalizeQRCode.ref}/>
             </Modalize>
             <Modalize {...propsDelete}>
                 <ModalizeDeleteThought next={next} thought={thoughtSelected} modalize={modalizeDelete.ref}/>

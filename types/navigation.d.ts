@@ -2,7 +2,6 @@ type INavigation = {
     Home: undefined
     Login: undefined
     Settings: undefined
-    CreateGroup: undefined
     ImportThoughts: undefined
     Group: {
         groupName: string
@@ -13,6 +12,9 @@ type INavigation = {
     }
     ReadQRCode: {
         page: keyof INavigation
+    }
+    CreateGroup: {
+        QRCode?: string
     }
     EditThought: {
         QRCode?: string

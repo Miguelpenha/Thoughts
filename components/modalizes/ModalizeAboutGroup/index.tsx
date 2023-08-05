@@ -24,10 +24,10 @@ const ModalizeAboutGroup: FC<IProps> = ({ group }) => {
     if (countThoughts) {
         return (
             <Container>
-                <ContainerData entering={FadeInDown.duration(200).delay(100)} onPress={async () => await handleCopy(group)}>
+                <ContainerData entering={FadeInDown.duration(100).delay(200)} onPress={async () => await handleCopy(group)}>
                     <Data>Nome: {group}</Data>
                 </ContainerData>
-                <ContainerData entering={FadeInDown.duration(200).delay(200)} onPress={async () => await handleCopy(String(countThoughts))}>
+                <ContainerData entering={FadeInDown.duration(100).delay(300)} onPress={async () => await handleCopy(String(countThoughts))}>
                     <Data>Quantidade de pensamentos: {countThoughts && countThoughts}</Data>
                 </ContainerData>
             </Container>

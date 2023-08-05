@@ -8,10 +8,11 @@ import ButtonCancel from '../../buttons/ButtonCancel'
 interface IProps {
     modalize: RefObject<IHandles>
     modalizeDelete: RefObject<IHandles>
+    modalizeQRCode: RefObject<IHandles>
 }
 
-const ModalizeOptionsGroup: FC<IProps> = ({ modalize, modalizeDelete }) => {
-    const options = useOptions(modalize, modalizeDelete)
+const ModalizeOptionsGroup: FC<IProps> = ({ modalize, modalizeDelete, modalizeQRCode }) => {
+    const options = useOptions(modalize, modalizeDelete, modalizeQRCode)
 
     return (
         <>

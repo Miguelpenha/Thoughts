@@ -1,10 +1,9 @@
-import { IThought } from '../../types'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useShowQRCode(thought: IThought) {
+function useShowQRCode(secure: boolean) {
     async function showQRCode() {
-        if (thought.secure) {
+        if (secure) {
             const { success } = await LocalAuthentication.authenticateAsync({
                 promptMessage: 'Autenticar'
             })

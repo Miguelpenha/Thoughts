@@ -1,4 +1,3 @@
-import { IThought } from '../../../types'
 import { RefObject, FC, useRef } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import { useTheme } from 'styled-components'
@@ -11,12 +10,12 @@ import Button from '../../buttons/Button'
 import Icon from '../../Icon'
 
 interface IProps {
-    thought: IThought
+    text: string
     position: 'initial' | 'top' 
     modalize: RefObject<IHandles>
 }
 
-const ModalizeQRCode: FC<IProps> = ({ position, thought, modalize }) => {
+const ModalizeQRCode: FC<IProps> = ({ position, text, modalize }) => {
     const theme = useTheme()
     const animation = useAnimation(position)
     const refQRCode = useRef<Svg>(null)
@@ -28,10 +27,10 @@ const ModalizeQRCode: FC<IProps> = ({ position, thought, modalize }) => {
         </ButtonDownload>
         <Container {...animation}>
             <QRCode
+                data={text}
                 padding={20}
                 ref={refQRCode}
                 pieceScale={1.04}
-                data={thought.text}
                 color={theme.primary}
                 errorCorrectionLevel="H"
                 pieceSize={RFPercentage(0.9)}

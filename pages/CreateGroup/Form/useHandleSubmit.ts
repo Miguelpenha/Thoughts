@@ -1,20 +1,37 @@
+import useGroups from '../../../services/useGroups'
 import { useNavigation } from '@react-navigation/native'
 import createGroup from '../../../services/createGroup'
 import Toast from 'react-native-toast-message'
 
 function useHandleSubmit(name: string) {
+    const groups = useGroups()
     const navigation = useNavigation()
 
     async function handleSubmit() {
         if (name) {
-            await createGroup(name)
+            let isExists = false
 
-            Toast.show({
-                type: 'success',
-                text1: 'Grupo criado com sucesso!'
+            groups.map(group => {
+                if (group === name) {
+                    isExists = true
+                }
             })
 
-            navigation.goBack()
+            if (!isExists) {
+                await createGroup(name)
+
+                Toast.show({
+                    type: 'success',
+                    text1: 'Grupo criado com sucesso!'
+                })
+
+                navigation.goBack()
+            } else {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Esse grupo já existe'
+                })
+            }
         } else {
             Toast.show({
                 type: 'error',

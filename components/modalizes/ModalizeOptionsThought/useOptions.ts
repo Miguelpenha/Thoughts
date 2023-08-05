@@ -9,7 +9,7 @@ import useChangeSecure from '../../hooks/useChangeSecure'
 
 function useOptions(thought: IThought, modalize: RefObject<IHandles>, modalizeQRCode: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>): IOption[] {
     const navigateVerified = useNavigateVerified()
-    const showQRCode = useShowQRCode(thought)
+    const showQRCode = useShowQRCode(thought.secure)
     const shareThought = useShareThought(thought)
     const changeSecure = useChangeSecure(thought)
 

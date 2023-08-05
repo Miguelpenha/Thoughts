@@ -21,13 +21,13 @@ const ModalizeAboutThought: FC<IProps> = ({ thought }) => {
 
     return (
         <Container>
-            <ContainerData entering={FadeInDown.duration(200).delay(100)} onPress={async () => await handleCopy(thought.name)}>
+            <ContainerData entering={FadeInDown.duration(100).delay(200)} onPress={async () => await handleCopy(thought.name)}>
                 <Data>Nome: {thought.name}</Data>
             </ContainerData>
-            <ContainerData entering={FadeInDown.duration(200).delay(200)} onPress={async () => await handleCopy(thought.group || 'Nenhum')}>
+            <ContainerData entering={FadeInDown.duration(100).delay(300)} onPress={async () => await handleCopy(thought.group || 'Nenhum')}>
                 <Data>Grupo: {thought.group || 'Nenhum'}</Data>
             </ContainerData>
-            <ContainerData entering={FadeInDown.duration(200).delay(300)} onPress={async () => await handleCopy(thought.secure ? 'Sim' : 'Não')}>
+            <ContainerData entering={FadeInDown.duration(100).delay(400)} onPress={async () => await handleCopy(thought.secure ? 'Sim' : 'Não')}>
                 <Data>Seguro: {thought.secure ? 'Sim' : 'Não'}</Data>
             </ContainerData>
         </Container>
