@@ -1,5 +1,5 @@
 import useModalize, { IModalize } from '../hooks/useModalize'
-import { IThought } from '../../types'
+import { INavigation, IThought } from '../../types'
 import { FC, useState } from 'react'
 import { Modalize } from 'react-native-modalize'
 import ModalizeOptionsThought from './ModalizeOptionsThought'
@@ -8,10 +8,11 @@ import ModalizeDeleteThought from './ModalizeDeleteThought'
 
 interface IProps {
     propsOptions: IModalize
+    next?: keyof INavigation
     thoughtSelected: IThought
 }
 
-const ModalizeGroupOptionsThought: FC<IProps> = ({ propsOptions, thoughtSelected }) => {
+const ModalizeGroupOptionsThought: FC<IProps> = ({ propsOptions, thoughtSelected, next }) => {
     const { modalize: modalizeQRCode, props: propsQRCode } = useModalize(90, 75, true)
     const { modalize: modalizeDelete, props: propsDelete } = useModalize(60, 0, true)
     const [positionModalizeQRCode, setPositionModalizeQRCode] = useState<'initial' | 'top'>('initial')
@@ -30,7 +31,7 @@ const ModalizeGroupOptionsThought: FC<IProps> = ({ propsOptions, thoughtSelected
                 <ModalizeQRCode position={positionModalizeQRCode} thought={thoughtSelected} modalize={modalizeQRCode.ref}/>
             </Modalize>
             <Modalize {...propsDelete}>
-                <ModalizeDeleteThought thought={thoughtSelected} modalize={modalizeDelete.ref}/>
+                <ModalizeDeleteThought next={next} thought={thoughtSelected} modalize={modalizeDelete.ref}/>
             </Modalize>
         </>
     )

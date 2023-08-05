@@ -9,7 +9,7 @@ function Home() {
     return (
         <Container scroll>
             <Groups thoughts={thoughts}/>
-            <ListThoughts thoughts={thoughts}/>
+            <ListThoughts thoughts={thoughts} next="Home"/>
         </Container>
     )
 }

@@ -1,9 +1,9 @@
-import { IThought } from '../../types'
+import { IThought, INavigation } from '../../types'
 import { useNavigation } from '@react-navigation/native'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useOnPress(thought: IThought) {
+function useOnPress(thought: IThought, next?: keyof INavigation) {
     const navigation = useNavigation()
 
     async function onPress() {
@@ -14,6 +14,7 @@ function useOnPress(thought: IThought) {
     
             if (success) {
                 navigation.navigate('Thought', {
+                    next,
                     thoughtID: thought.id
                 })
             } else {
@@ -23,7 +24,7 @@ function useOnPress(thought: IThought) {
                 })
             }
         } else {
-            navigation.navigate('Thought', { thoughtID: thought.id })
+            navigation.navigate('Thought', { next, thoughtID: thought.id })
         }
     }
 

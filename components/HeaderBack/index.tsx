@@ -3,8 +3,7 @@ import { FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import useAnimation from './useAnimation'
 import Container from './Container'
-import { ContainerIcon, Icon, Title, ContainerIconRight, Line } from './style'
-import { FadeInUp } from 'react-native-reanimated'
+import { Content, ContainerIcon, Icon, Title, ContainerIconRight, Line } from './style'
 import limitText from '../../utils/limitText'
 
 interface Iprops {
@@ -26,17 +25,19 @@ const HeaderBack: FC<Iprops> = ({ type='view', back=true, onPress, onPressContai
 
     return (
         <Container type={type} onPress={onPressContainer}>
-            <ContainerIcon onPress={onPress || navigation.goBack}>
-                {back && (
-                    <Icon name={icon} size={25}/>
+            <Content>
+                <ContainerIcon onPress={onPress || navigation.goBack}>
+                    {back && (
+                        <Icon name={icon} size={25}/>
+                    )}
+                </ContainerIcon>
+                <Title>{limitText(children, 25)}</Title>
+                {right && (
+                    <ContainerIconRight onPress={onPressRight || navigateSettings}>
+                        <Icon name={iconRight} size={28}/>
+                    </ContainerIconRight>
                 )}
-            </ContainerIcon>
-            <Title>{limitText(children, 25)}</Title>
-            {right && (
-                <ContainerIconRight onPress={onPressRight || navigateSettings}>
-                    <Icon name={iconRight} size={28}/>
-                </ContainerIconRight>
-            )}
+            </Content>
             <Line style={animation}/>
         </Container>
     )

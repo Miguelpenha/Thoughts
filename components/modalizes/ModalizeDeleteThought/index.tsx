@@ -1,4 +1,4 @@
-import { IThought } from '../../../types'
+import { IThought, INavigation } from '../../../types'
 import { RefObject, FC } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import useDeleteThought from '../../hooks/useDeleteThought'
@@ -10,11 +10,12 @@ import Button from '../../buttons/Button'
 
 interface IProps {
     thought: IThought
+    next?: keyof INavigation
     modalize: RefObject<IHandles>
 }
 
-const ModalizeDeleteThought: FC<IProps> = ({ thought, modalize }) => {
-    const deleteThought = useDeleteThought(thought, modalize, false)
+const ModalizeDeleteThought: FC<IProps> = ({ thought, modalize, next }) => {
+    const deleteThought = useDeleteThought(thought, modalize, next)
 
     return <>
         <Title entering={FadeInUp.duration(700)}>Deletar pensamento?</Title>

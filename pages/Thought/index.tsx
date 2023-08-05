@@ -1,3 +1,4 @@
+import { INavigation } from '../../types'
 import { useRoute } from '@react-navigation/native'
 import getThought from '../../services/getThought'
 import { useState } from 'react'
@@ -20,10 +21,11 @@ import ModalizeGroupOptionsThought from '../../components/modalizes/ModalizeGrou
 
 interface IParams {
     thoughtID: string
+    next: keyof INavigation
 }
 
 function Thought() {
-    const { thoughtID } = useRoute().params as IParams
+    const { thoughtID, next } = useRoute().params as IParams
     const thought = getThought(thoughtID)
     const [hidden, setHidden] = useState(false)
     const handlePress = useHandlePress(thought, hidden, setHidden)
@@ -58,9 +60,9 @@ function Thought() {
                     <ModalizeAboutThought thought={thought}/>
                 </Modalize>
                 <Modalize {...propsDeleteThought}>
-                    <ModalizeDeleteThought thought={thought} modalize={modalizeDeleteThought.ref}/>
+                    <ModalizeDeleteThought next={next} thought={thought} modalize={modalizeDeleteThought.ref}/>
                 </Modalize>
-                <ModalizeGroupOptionsThought propsOptions={propsOptions} thoughtSelected={thought}/>
+                <ModalizeGroupOptionsThought next={next} propsOptions={propsOptions} thoughtSelected={thought}/>
             </ContainerDefault>
         )
     } else {

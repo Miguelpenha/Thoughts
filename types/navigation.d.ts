@@ -9,6 +9,7 @@ type INavigation = {
     }
     Thought: {
         thoughtID: string
+        next: keyof INavigation
     }
     ReadQRCode: {
         page: keyof INavigation

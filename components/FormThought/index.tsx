@@ -1,64 +1,34 @@
-import { IThought } from '../../types'
-import { FC, useState } from 'react'
-import { useTheme } from 'styled-components'
-import useHandleSubmit from './useHandleSubmit'
-import useQRCode from './useQRCode'
-import { Container, Field, Label } from './style'
-import Animated, { FadeInDown } from 'react-native-reanimated'
-import Input from '../Input'
-import Switch from '../Switch'
-import ButtonSubmit from '../buttons/ButtonSubmit'
-import Icon from '../Icon'
+import { FC } from 'react'
+import { IProps } from './type'
+import useModalize from '../hooks/useModalize'
+import ButtonIcon from '../buttons/ButtonIcon'
+import IconMenu from '../IconMenu'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+import SelectedGroup from './SelectedGroup'
+import Form from './Form'
+import { Modalize } from 'react-native-modalize'
+import ModalizeSelectedGroup from '../modalizes/ModalizeSelectedGroup'
 
-interface IProps {
-    QRCode?: string
-    thought?: IThought
-    titleSubmit: string
-    onSubmit: (name: string, text: string, secure: boolean) => Promise<void>
-}
-
-const FormThought: FC<IProps> = ({ thought, QRCode, onSubmit, titleSubmit }) => {
-    const [name, setName] = useState(thought ? thought.name || '' : '')
-    const theme = useTheme()
-    const [text, setText] = useState(thought ? thought.text || '' : '')
-    const [secure, setSecure] = useState(Boolean(thought ? Boolean(thought.secure) : true))
-    const handleSubmit = useHandleSubmit(name, text, secure, onSubmit)
-
-    useQRCode(QRCode, setText)
+const FormThought: FC<IProps> = ({ modalizeMenuIcons, icon, group, QRCode, thought, onSubmit, initialData, titleSubmit, setGroup }) => {
+    const { modalize: modalizeSelectedGroup, props: propsModalizeSelectedGroup } = useModalize(70)
 
     return (
-        <Container entering={FadeInDown.delay(200).duration(400)}>
-            <Field entering={FadeInDown.delay(300).duration(400)}>
-                <Label>Nome</Label>
-                <Input
-                    value={name}
-                    placeholder="Nome..."
-                    onChangeText={setName}
-                    cursorColor={theme.primary}
-                    onSubmitEditing={handleSubmit}
-                    selectionColor={theme.primary}
-                    placeholderTextColor={theme.primary}
-                />
-            </Field>
-            <Field entering={FadeInDown.delay(400).duration(400)}>
-                <Label>Texto</Label>
-                <Input
-                    multiline
-                    value={text}
-                    placeholder="Texto..."
-                    onChangeText={setText}
-                    cursorColor={theme.primary}
-                    selectionColor={theme.primary}
-                    placeholderTextColor={theme.primary}
-                />
-            </Field>
-            <Animated.View entering={FadeInDown.delay(500).duration(400)}>
-                <Switch label="Seguro" setValue={setSecure} value={secure}/>
-            </Animated.View>
-            <ButtonSubmit directionIcon="right" loading title={titleSubmit} onPress={handleSubmit}>
-                <Icon name="arrow-forward-ios" size={25} directionIcon="right"/>
-            </ButtonSubmit>
-        </Container>
+        <>
+            <ButtonIcon onPress={modalizeMenuIcons.current?.open}>
+                <IconMenu size={RFPercentage(5)} name={icon}/>
+            </ButtonIcon>
+            <SelectedGroup group={group} modalize={modalizeSelectedGroup.ref}/>
+            <Form
+                QRCode={QRCode}
+                thought={thought}
+                onSubmit={onSubmit}
+                initialData={initialData}
+                titleSubmit={titleSubmit}
+            />
+            <Modalize ref={modalizeSelectedGroup.ref} {...propsModalizeSelectedGroup}>
+                <ModalizeSelectedGroup setGroup={setGroup} modalize={modalizeSelectedGroup.ref}/>
+            </Modalize>
+        </>
     )
 }
 

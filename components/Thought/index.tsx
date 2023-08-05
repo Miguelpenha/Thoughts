@@ -1,4 +1,5 @@
 import IThought from '../../types/thought'
+import { INavigation } from '../../types'
 import { FC } from 'react'
 import useOnPress from './useOnPress'
 import useAnimation from './useAnimation'
@@ -9,10 +10,11 @@ interface IProps {
     index: number
     thought: IThought
     onLongPress: () => void
+    next?: keyof INavigation
 }
 
-const Thought: FC<IProps> = ({ index, thought, onLongPress }) => {
-    const onPress = useOnPress(thought)
+const Thought: FC<IProps> = ({ index, thought, next, onLongPress }) => {
+    const onPress = useOnPress(thought, next)
     const animation = useAnimation(onPress)
 
     return (

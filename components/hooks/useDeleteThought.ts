@@ -1,4 +1,4 @@
-import { IThought } from '../../types'
+import { IThought, INavigation } from '../../types'
 import { RefObject } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import useDeleteThoughtService from '../../services/useDeleteThought'
@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import * as LocalAuthentication from 'expo-local-authentication'
 import Toast from 'react-native-toast-message'
 
-function useDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next: boolean=true) {
+function useDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next?: keyof INavigation) {
     const deleteThoughtService = useDeleteThoughtService(thought)
     const navigation = useNavigation()
 
@@ -24,7 +24,16 @@ function useDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next
                     text1: 'Pensamento excluído'
                 })
 
-                next ? navigation.navigate('Home') : modalize.current.close()
+                if (next) {
+                    modalize.current.close()
+                
+                    navigation.navigate({
+                        name: next,
+                        merge: true
+                    } as any)
+                } else {
+                    modalize.current.close()
+                }
             } else {
                 Toast.show({
                     type: 'error',
@@ -39,7 +48,16 @@ function useDeleteThought(thought: IThought, modalize: RefObject<IHandles>, next
                 text1: 'Pensamento excluído'
             })
 
-            next ? navigation.navigate('Home') : modalize.current.close()
+            if (next) {
+                modalize.current.close()
+                
+                navigation.navigate({
+                    name: next,
+                    merge: true
+                } as any)
+            } else {
+                modalize.current.close()
+            }
         }
     }
 

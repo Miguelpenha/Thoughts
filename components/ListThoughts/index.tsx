@@ -1,4 +1,4 @@
-import { IThought } from '../../types'
+import { IThought, INavigation } from '../../types'
 import { FC, useState } from 'react'
 import useModalize from '../../components/hooks/useModalize'
 import { FlashList } from '@shopify/flash-list'
@@ -9,9 +9,10 @@ import ModalizeGroupOptionsThought from '../modalizes/ModalizeGroupOptionsThough
 interface IProps {
     group?: string
     thoughts: IThought[]
+    next?: keyof INavigation
 }
 
-const ListThoughts: FC<IProps> = ({ group, thoughts }) => {
+const ListThoughts: FC<IProps> = ({ group, thoughts, next }) => {
     const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70, true)
     const [thoughtSelected, setThoughtSelected] = useState<IThought>()
 
@@ -30,6 +31,7 @@ const ListThoughts: FC<IProps> = ({ group, thoughts }) => {
                 renderItem={({ index, item }) => (
                     (group ? item.group === group : !item.group) && (
                         <Thought
+                            next={next}
                             index={index}
                             thought={item}
                             onLongPress={() => handleLongPress(item)}
@@ -37,7 +39,7 @@ const ListThoughts: FC<IProps> = ({ group, thoughts }) => {
                     )
                 )}
             />
-            <ModalizeGroupOptionsThought propsOptions={propsOptions} thoughtSelected={thoughtSelected}/>
+            <ModalizeGroupOptionsThought next={next} propsOptions={propsOptions} thoughtSelected={thoughtSelected}/>
         </>
     )
 }
