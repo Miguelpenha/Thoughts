@@ -8,7 +8,6 @@ import getThought from '../../services/getThought'
 import FormThought from '../../components/FormThought'
 import useHandleSubmit from './useHandleSubmit'
 import ContainerDefault from '../../components/ContainerDefault'
-import { ScrollView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'
 
 interface IParams {
     QRCode?: string
@@ -46,23 +45,17 @@ function EditThought() {
             })}>
                 {`Editar pensamento ${group ? `(${group})` : ''}`}
             </HeaderBack>
-            <ScrollView>
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <KeyboardAvoidingView keyboardVerticalOffset={-50} behavior="position" enabled>
-                        <FormThought
-                            icon={icon}
-                            group={group}
-                            thought={thought}
-                            setGroup={setGroup}
-                            titleSubmit="Editar"
-                            QRCode={params.QRCode}
-                            onSubmit={handleSubmit}
-                            initialData={initialData}
-                            modalizeMenuIcons={modalizeMenuIconsRef.ref}
-                        />
-                    </KeyboardAvoidingView>
-                </TouchableWithoutFeedback>
-            </ScrollView>
+            <FormThought
+                icon={icon}
+                group={group}
+                thought={thought}
+                setGroup={setGroup}
+                titleSubmit="Editar"
+                QRCode={params.QRCode}
+                onSubmit={handleSubmit}
+                initialData={initialData}
+                modalizeMenuIcons={modalizeMenuIconsRef.ref}
+            />
             <Modalize onClosed={() => setHeight(90)} {...propsModalizeMenuIcons} {...modalizeMenuIconsProps}/>
         </ContainerDefault>
     )
