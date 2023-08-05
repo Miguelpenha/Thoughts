@@ -14,6 +14,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import ButtonIconCancel from '../../components/buttons/ButtonIconCancel'
 import ButtonIcon from '../../components/buttons/ButtonIcon'
 import { Modalize } from 'react-native-modalize'
+import ModalizeAboutThought from '../../components/modalizes/ModalizeAboutThought'
 import ModalizeDeleteThought from '../../components/modalizes/ModalizeDeleteThought'
 import ModalizeGroupOptionsThought from '../../components/modalizes/ModalizeGroupOptionsThought'
 
@@ -29,13 +30,14 @@ function Thought() {
     const handleLongPress = useHandleLongPress(hidden, thought)
     const animation = useAnimation(handleLongPress, handlePress)
     const navigateVerified = useNavigateVerified()
+    const { modalize: modalizeAboutThought, props: propsAboutThought } = useModalize(70, 0, true)
     const { props: propsDeleteThought, modalize: modalizeDeleteThought } = useModalize(60, 60)
     const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70, true)
 
     if (thought) {
         return (
             <ContainerDefault>
-                <HeaderBack type="touchable" onPressContainer={() => {}}>{thought.name}</HeaderBack>
+                <HeaderBack type="touchable" onPressContainer={modalizeAboutThought.open}>{thought.name}</HeaderBack>
                 <ContainerText layout={CurvedTransition} entering={FadeInDown.delay(600).duration(400)} activeOpacity={0.5} {...animation}>
                     <Text multiline={!hidden} value={thought.text} editable={false} secureTextEntry={hidden}/>
                 </ContainerText>
@@ -52,6 +54,9 @@ function Thought() {
                         <Icon name="more-vert" size={RFPercentage(5)}/>
                     </ButtonIcon>
                 </Options>
+                <Modalize {...propsAboutThought}>
+                    <ModalizeAboutThought thought={thought}/>
+                </Modalize>
                 <Modalize {...propsDeleteThought}>
                     <ModalizeDeleteThought thought={thought} modalize={modalizeDeleteThought.ref}/>
                 </Modalize>
