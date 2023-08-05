@@ -20,7 +20,6 @@ function Form() {
             <Field entering={FadeInDown.delay(300).duration(400)}>
                 <Label>Pensamentos</Label>
                 <Input
-                    multiline
                     value={thoughtsImported}
                     cursorColor={theme.primary}
                     placeholder="Pensamentos..."
