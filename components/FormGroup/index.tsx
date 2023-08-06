@@ -1,20 +1,21 @@
 import { FC, useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
-import useHandleSubmit from './useHandleSubmit'
 import { Container, Field, Label } from './style'
 import { FadeInDown } from 'react-native-reanimated'
-import Input from '../../../components/Input'
-import ButtonSubmit from '../../../components/buttons/ButtonSubmit'
-import Icon from '../../../components/Icon'
+import Input from '../Input'
+import ButtonSubmit from '../buttons/ButtonSubmit'
+import Icon from '../Icon'
 
 interface IProps {
     QRCode?: string
+    nameDefault?: string
+    titleConfirm: string
+    handleSubmit: (name: string) => Promise<void>
 }
 
-const Form: FC<IProps> = ({ QRCode }) => {
-    const [name, setName] = useState('')
+const FormGroup: FC<IProps> = ({ nameDefault, QRCode, titleConfirm, handleSubmit }) => {
+    const [name, setName] = useState(nameDefault || '')
     const theme = useTheme()
-    const handleSubmit = useHandleSubmit(name)
 
     useEffect(() => {
         if (QRCode) {
@@ -31,16 +32,16 @@ const Form: FC<IProps> = ({ QRCode }) => {
                     onChangeText={setName}
                     cursorColor={theme.primary}
                     placeholder="Nome do grupo..."
-                    onSubmitEditing={handleSubmit}
                     selectionColor={theme.primary}
                     placeholderTextColor={theme.primary}
+                    onSubmitEditing={() => handleSubmit(name)}
                 />
             </Field>
-            <ButtonSubmit directionIcon="right" loading title="Confirmar" onPress={handleSubmit}>
+            <ButtonSubmit directionIcon="right" loading title={titleConfirm} onPress={() => handleSubmit(name)}>
                 <Icon name="arrow-forward-ios" size={25} directionIcon="right"/>
             </ButtonSubmit>
         </Container>
     )
 }
 
-export default Form
+export default FormGroup

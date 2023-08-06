@@ -38,7 +38,7 @@ const Groups: FC<IProps> = ({ thoughts }) => {
                 ListHeaderComponent={<Header thoughts={thoughts} groups={groups} modalize={modalizeLogout.ref}/>}
             />
             <Modalize {...propsOptionsGroup}>
-                <ModalizeOptionsGroup modalizeQRCode={modalizeQRCode.ref} modalize={modalizeOptionsGroup.ref} modalizeDelete={modalizeDeleteGroup.ref}/>
+                <ModalizeOptionsGroup group={groupSelected} modalizeQRCode={modalizeQRCode.ref} modalize={modalizeOptionsGroup.ref} modalizeDelete={modalizeDeleteGroup.ref}/>
             </Modalize>
             <Modalize {...propsDeleteGroup}>
                 <ModalizeDeleteGroup group={groupSelected} modalize={modalizeDeleteGroup.ref}/>

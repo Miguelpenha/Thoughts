@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import Group from '../pages/Group'
 import Thought from '../pages/Thought'
 import Settings from '../pages/Settings'
+import EditGroup from '../pages/EditGroup'
 import ReadQRCode from '../pages/ReadQRCode'
 import CreateGroup from '../pages/CreateGroup'
 import EditThought from '../pages/EditThought'
@@ -24,6 +25,7 @@ function MainStack() {
             <Screen name="Group" component={Group}/>
             <Screen name="Thought" component={Thought}/>
             <Screen name="Settings" component={Settings}/>
+            <Screen name="EditGroup" component={EditGroup}/>
             <Screen name="ReadQRCode" component={ReadQRCode}/>
             <Screen name="CreateGroup" component={CreateGroup}/>
             <Screen name="EditThought" component={EditThought}/>

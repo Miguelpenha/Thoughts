@@ -2,19 +2,26 @@ import { RefObject } from 'react'
 import { IHandles } from 'react-native-modalize/lib/options'
 import { IOption } from './type'
 import useShowQRCode from '../../hooks/useShowQRCode'
+import useNavigateVerified from '../../hooks/useNavigateVerified'
 
-function useOptions(modalize: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>, modalizeQRCode: RefObject<IHandles>): IOption[] {
+function useOptions(modalize: RefObject<IHandles>, group: string, modalizeQRCode: RefObject<IHandles>, modalizeDelete: RefObject<IHandles>): IOption[] {
     const showQRCode = useShowQRCode(false)
+    const navigationVerified = useNavigateVerified()
     
     return [
         {
-            type: 'delete',
-            icon: 'delete',
-            title: 'Excluir',
+            icon: 'edit',
+            title: 'Editar',
             onPress: async () => {
-                modalize.current.close()
+                const success = await navigationVerified('EditGroup', {
+                    group
+                })
 
-                modalizeDelete.current.open()
+                if (success) {
+                    modalize.current.close()
+                } else {
+                    
+                }
             }
         },
         {
@@ -30,6 +37,16 @@ function useOptions(modalize: RefObject<IHandles>, modalizeDelete: RefObject<IHa
                 }
             }
         },
+        {
+            type: 'delete',
+            icon: 'delete',
+            title: 'Excluir',
+            onPress: async () => {
+                modalize.current.close()
+
+                modalizeDelete.current.open()
+            }
+        }
     ]
 }
 

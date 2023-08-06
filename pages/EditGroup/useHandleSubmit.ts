@@ -1,13 +1,13 @@
-import useGroups from '../../../services/useGroups'
+import useGroups from '../../services/useGroups'
 import { useNavigation } from '@react-navigation/native'
-import createGroup from '../../../services/createGroup'
 import Toast from 'react-native-toast-message'
+import editGroup from '../../services/editGroup'
 
-function useHandleSubmit(name: string) {
+function useHandleSubmit() {
     const groups = useGroups()
     const navigation = useNavigation()
 
-    async function handleSubmit() {
+    async function handleSubmit(name: string, group: string) {
         if (name) {
             let isExists = false
 
@@ -18,11 +18,11 @@ function useHandleSubmit(name: string) {
             })
 
             if (!isExists) {
-                await createGroup(name)
+                await editGroup(group, name)
 
                 Toast.show({
                     type: 'success',
-                    text1: 'Grupo criado com sucesso!'
+                    text1: 'Grupo editado com sucesso!'
                 })
 
                 navigation.goBack()

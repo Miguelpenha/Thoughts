@@ -13,6 +13,10 @@ type INavigation = {
     ReadQRCode: {
         page: keyof INavigation
     }
+    EditGroup: {
+        group: name
+        QRCode?: string
+    }
     CreateGroup: {
         QRCode?: string
     }

@@ -6,13 +6,14 @@ import Icon from '../../Icon'
 import ButtonCancel from '../../buttons/ButtonCancel'
 
 interface IProps {
+    group: string
     modalize: RefObject<IHandles>
     modalizeDelete: RefObject<IHandles>
     modalizeQRCode: RefObject<IHandles>
 }
 
-const ModalizeOptionsGroup: FC<IProps> = ({ modalize, modalizeDelete, modalizeQRCode }) => {
-    const options = useOptions(modalize, modalizeDelete, modalizeQRCode)
+const ModalizeOptionsGroup: FC<IProps> = ({ group, modalize, modalizeQRCode, modalizeDelete }) => {
+    const options = useOptions(modalize, group, modalizeQRCode, modalizeDelete)
 
     return (
         <>
