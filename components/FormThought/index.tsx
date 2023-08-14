@@ -17,7 +17,7 @@ const FormThought: FC<IProps> = ({ modalizeMenuIcons, icon, group, QRCode, thoug
         return (
             <ScrollView>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <KeyboardAvoidingView keyboardVerticalOffset={-50} behavior="position" enabled>
+                    <KeyboardAvoidingView  behavior="padding" enabled>
                         <ButtonIcon onPress={modalizeMenuIcons.current?.open}>
                             <IconMenu size={RFPercentage(5)} name={icon}/>
                         </ButtonIcon>

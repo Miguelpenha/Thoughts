@@ -38,7 +38,7 @@ function Thought() {
 
     if (thought) {
         return (
-            <ContainerDefault>
+            <ContainerDefault scroll>
                 <HeaderBack type="touchable" onPressContainer={modalizeAboutThought.open}>{thought.name}</HeaderBack>
                 <ContainerText layout={CurvedTransition} entering={FadeInDown.delay(600).duration(400)} activeOpacity={0.5} {...animation}>
                     <Text multiline={!hidden} value={thought.text} editable={false} secureTextEntry={hidden}/>
