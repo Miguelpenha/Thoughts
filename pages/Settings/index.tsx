@@ -12,7 +12,7 @@ import ModalizeLogout from '../../components/modalizes/ModalizeLogout'
 function Settings() {
   const navigateVerified = useNavigateVerified()
   const { modalize: modalizeExportThoughts, props: propsModalizeExportThoughts } = useModalize()
-  const { modalize: modalizeDeleteData, props: propsModalizeDeleteData } = useModalize()
+  const { modalize: modalizeDeleteData, props: propsModalizeDeleteData } = useModalize(85)
   const { modalize: modalizeLogout, props: propsModalizeLogout } = useModalize()
 
   return <>

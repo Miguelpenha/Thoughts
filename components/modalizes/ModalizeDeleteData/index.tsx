@@ -3,6 +3,7 @@ import { IHandles } from 'react-native-modalize/lib/options'
 import useDeleteData from './useDeleteData'
 import { Title } from './style'
 import { FadeInUp } from 'react-native-reanimated'
+import Datas from './Datas'
 import ButtonCancel from '../../buttons/ButtonCancel'
 import Icon from '../../Icon'
 import Button from '../../buttons/Button'
@@ -16,6 +17,7 @@ const ModalizeDeleteData: FC<IProps> = ({ modalize }) => {
 
     return <>
         <Title entering={FadeInUp.duration(700)}>Deletar dados?</Title>
+        <Datas/>
         <ButtonCancel title="Deletar" index={1} onPress={deleteData}>
             <Icon color="color" name="delete" size={30}/>
         </ButtonCancel>
