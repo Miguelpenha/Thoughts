@@ -28,12 +28,12 @@ const ModalizeQRCode: FC<IProps> = ({ position, text, modalize }) => {
         <Container {...animation}>
             <QRCode
                 data={text}
-                padding={20}
+                padding={15}
+                pieceSize={6}
                 ref={refQRCode}
                 pieceScale={1.04}
                 color={theme.primary}
                 errorCorrectionLevel="H"
-                pieceSize={RFPercentage(0.2)}
                 logo={{
                     scale: 1,
                     hidePieces: false,
