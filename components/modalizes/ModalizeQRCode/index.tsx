@@ -29,7 +29,7 @@ const ModalizeQRCode: FC<IProps> = ({ position, text, modalize }) => {
             <QRCode
                 data={text}
                 padding={15}
-                pieceSize={6}
+                pieceSize={1}
                 ref={refQRCode}
                 pieceScale={1.04}
                 color={theme.primary}
