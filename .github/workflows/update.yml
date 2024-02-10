@@ -1,9 +1,9 @@
-name: build and update
+name: update
 on: push
 
 jobs:
   build:
-    name: EAS build and update android
+    name: EAS update android
     runs-on: ubuntu-latest
     steps:
       - name: Check for EXPO_TOKEN
@@ -14,37 +14,36 @@ jobs:
           fi
 
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: npm
 
       - name: Setup Expo
-        uses: expo/expo-github-action@v7
+        uses: expo/expo-github-action@v8
         with:
-          expo-version: latest
+          packager: npm
           eas-version: latest
+          expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Find yarn cache
-        id: yarn-cache-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Find npm cache
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
       - name: Restore cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
-          path: ${{ steps.yarn-cache-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       
       - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Create build android
-        run: eas build --profile main --platform android --no-wait --non-interactive
+        run: npm ci
 
       - name: Create update android
         run: eas update --auto

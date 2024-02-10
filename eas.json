@@ -12,14 +12,11 @@
       "distribution": "internal",
       "channel": "preview"
     },
-    "main": {
+    "production": {
       "android": {
         "gradleCommand": ":app:assembleRelease"
       },
       "channel": "main"
     }
-  },
-  "submit": {
-    "main": {}
   }
 }

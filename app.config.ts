@@ -69,6 +69,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       {
         iCloudContainerEnvironment: 'Production'
       }
+    ],
+    [
+      'expo-updates',
+      {
+        username: 'miguelpenha'
+      }
     ]
   ]
 })
