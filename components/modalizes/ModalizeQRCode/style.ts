@@ -18,11 +18,14 @@ interface IQRCode {
 }
 
 export const Container = styled(Animated.View)`
+    margin-top: 30%;
+    margin-bottom: 30%;
     align-self: center;
+    transform: scale(5);
 `
 
 export const QRCode = styled(Animated.createAnimatedComponent(QRCodeRaw))<IQRCode>`
-    padding: 2%;
-    border-radius: 15px;
+    padding: 5%;
+    border-radius: 8px;
     background-color: ${props => props.theme.backgroundColorSecondary};
 `
