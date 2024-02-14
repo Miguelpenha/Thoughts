@@ -1,18 +1,18 @@
-import { useState } from 'react'
+import useSettings from '../../contexts/settingsContext'
 import useNavigateVerified from '../../components/hooks/useNavigateVerified'
 import useModalize from '../../components/hooks/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
 import HeaderBack from '../../components/HeaderBack'
 import { Container, ButtonCancel, Button } from './style'
+import Switch from '../../components/Switch'
 import Icon from '../../components/Icon'
 import { Modalize } from 'react-native-modalize'
 import ModalizeExportThoughts from '../../components/modalizes/ModalizeExportThoughts'
 import ModalizeDeleteData from '../../components/modalizes/ModalizeDeleteData'
 import ModalizeLogout from '../../components/modalizes/ModalizeLogout'
-import Switch from '../../components/Switch'
 
 function Settings() {
-  const [showFirstHidden, setShowFirstHidden] = useState(false)
+  const { settings, setSettings } = useSettings()
   const navigateVerified = useNavigateVerified()
   const { modalize: modalizeExportThoughts, props: propsModalizeExportThoughts } = useModalize()
   const { modalize: modalizeDeleteData, props: propsModalizeDeleteData } = useModalize(85)
@@ -22,7 +22,13 @@ function Settings() {
     <ContainerDefault>
       <HeaderBack>Configurações</HeaderBack>
       <Container>
-        <Switch label="Mostrar segredo primeiro escondido" value={showFirstHidden} setValue={setShowFirstHidden}/>
+        <Switch
+          value={settings.showFirstHidden}
+          label="Mostrar segredo primeiro escondido"
+          setValue={() => {
+            setSettings(settings => ({ ...settings, showFirstHidden: !settings.showFirstHidden }))
+          }}
+        />
         <Button index={1} title="Exportar" onPress={modalizeExportThoughts.open}>
           <Icon name="file-upload" size={30}/>
         </Button>

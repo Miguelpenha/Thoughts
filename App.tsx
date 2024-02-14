@@ -5,6 +5,7 @@ import { green } from './utils/colorsLogs'
 import { ThemeProvider } from 'styled-components'
 import theme from './theme'
 import { AuthProvider } from './contexts/authContext'
+import { SettingsProvider } from './contexts/settingsContext'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Routes from './routes'
 import Toast from 'react-native-toast-message'
@@ -26,10 +27,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <Routes/>
-          <Toast config={toastConfig} onPress={() => Toast.hide()}/>
-        </GestureHandlerRootView>
+        <SettingsProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Routes/>
+            <Toast config={toastConfig} onPress={() => Toast.hide()}/>
+          </GestureHandlerRootView>
+        </SettingsProvider>
       </AuthProvider>
     </ThemeProvider>
   )

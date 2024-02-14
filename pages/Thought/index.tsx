@@ -1,6 +1,7 @@
 import { INavigation } from '../../types'
 import { useRoute } from '@react-navigation/native'
 import getThought from '../../services/getThought'
+import useSettings from '../../contexts/settingsContext'
 import { useState } from 'react'
 import useHandlePress from './useHandlePress'
 import useHandleLongPress from './useHandleLongPress'
@@ -27,7 +28,8 @@ interface IParams {
 function Thought() {
     const { thoughtID, next } = useRoute().params as IParams
     const thought = getThought(thoughtID)
-    const [hidden, setHidden] = useState(false)
+    const { showFirstHidden } = useSettings().settings
+    const [hidden, setHidden] = useState(showFirstHidden)
     const handlePress = useHandlePress(thought, hidden, setHidden)
     const handleLongPress = useHandleLongPress(hidden, thought)
     const animation = useAnimation(handleLongPress, handlePress)

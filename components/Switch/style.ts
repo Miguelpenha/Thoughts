@@ -1,11 +1,15 @@
 import styled from 'styled-components/native'
+import Animated from 'react-native-reanimated'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-export const Container = styled.View`
+export const Container = styled(Animated.View)`
     width: 75%;
-    margin: 1% auto;
+    padding: 4%;
+    margin: 2% auto;
     align-items: center;
     flex-direction: row;
+    border-radius: 15px;
+    background-color: ${props => props.theme.backgroundColorSecondary};
 `
 
 export const Label = styled.Text`
