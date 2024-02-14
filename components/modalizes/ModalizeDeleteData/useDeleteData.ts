@@ -15,6 +15,7 @@ function useDeleteData() {
             await logout()
             await AsyncStorage.removeItem('@thoughts:thoughts', null)
             await AsyncStorage.removeItem('@thoughts:groups', null)
+            await AsyncStorage.removeItem('@thoughts:settings', null)
 
             Toast.show({
                 type: 'error',
