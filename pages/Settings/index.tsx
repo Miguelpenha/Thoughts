@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import useNavigateVerified from '../../components/hooks/useNavigateVerified'
 import useModalize from '../../components/hooks/useModalize'
 import ContainerDefault from '../../components/ContainerDefault'
@@ -8,8 +9,10 @@ import { Modalize } from 'react-native-modalize'
 import ModalizeExportThoughts from '../../components/modalizes/ModalizeExportThoughts'
 import ModalizeDeleteData from '../../components/modalizes/ModalizeDeleteData'
 import ModalizeLogout from '../../components/modalizes/ModalizeLogout'
+import Switch from '../../components/Switch'
 
 function Settings() {
+  const [showFirstHidden, setShowFirstHidden] = useState(false)
   const navigateVerified = useNavigateVerified()
   const { modalize: modalizeExportThoughts, props: propsModalizeExportThoughts } = useModalize()
   const { modalize: modalizeDeleteData, props: propsModalizeDeleteData } = useModalize(85)
@@ -19,6 +22,7 @@ function Settings() {
     <ContainerDefault>
       <HeaderBack>Configurações</HeaderBack>
       <Container>
+        <Switch label="Mostrar segredo primeiro escondido" value={showFirstHidden} setValue={setShowFirstHidden}/>
         <Button index={1} title="Exportar" onPress={modalizeExportThoughts.open}>
           <Icon name="file-upload" size={30}/>
         </Button>

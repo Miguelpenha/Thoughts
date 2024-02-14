@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, FC  } from 'react'
 import { useTheme } from 'styled-components'
-import { Container, SwitchRaw, Label } from './style'
+import { Container, Label, SwitchRaw } from './style'
 
 interface IProps {
     label: string
@@ -14,17 +14,17 @@ const Switch: FC<IProps> = ({ value, setValue, onChange, label }) => {
 
     return (
         <Container>
+            <Label>{label}</Label>
             <SwitchRaw
                 value={value}
                 thumbColor={value ? theme.primary : theme.secondaryColor}
-                trackColor={{ true: theme.primary, false: theme.backgroundColor }}
+                trackColor={{ true: theme.primary, false: theme.backgroundColorSecondary }}
                 onChange={() => {
                     setValue(!value)
 
                     onChange && onChange()
                 }}
             />
-            <Label>{label}</Label>
         </Container>
     )
 }
