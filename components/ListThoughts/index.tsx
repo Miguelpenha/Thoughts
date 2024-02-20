@@ -31,7 +31,7 @@ const ListThoughts: FC<IProps> = ({ group, thoughts, next }) => {
     return (
         <Container>
             <Header group={group}/>
-            <InputSearch
+            {/* <InputSearch
                 value={search}
                 autoCapitalize="words"
                 onChangeText={setSearch}
@@ -40,23 +40,27 @@ const ListThoughts: FC<IProps> = ({ group, thoughts, next }) => {
                 cursorColor={theme.primary}
                 selectionColor={theme.primary}
                 placeholderTextColor={theme.secondaryColor}
-            />
+            /> */}
             <FlashList
                 data={thoughts}
-                extraData={search}
+                // extraData={search}
                 estimatedItemSize={70}
                 renderItem={({ index, item }) => {
+                    /*
                     if (item.name.toUpperCase().includes(search.toUpperCase())) {
-                        if (group ? item.group === group : !item.group) {
-                            return (
-                                <Thought
-                                    next={next}
-                                    index={index}
-                                    thought={item}
-                                    onLongPress={() => handleLongPress(item)}
-                                />
-                            )
-                        }
+                        
+                    }
+                    */
+
+                    if (group ? item.group === group : !item.group) {
+                        return (
+                            <Thought
+                                next={next}
+                                index={index}
+                                thought={item}
+                                onLongPress={() => handleLongPress(item)}
+                            />
+                        )
                     }
                 }}
             />
