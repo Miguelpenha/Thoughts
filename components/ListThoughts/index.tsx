@@ -1,9 +1,9 @@
 import { IThought, INavigation } from '../../types'
 import { FC, useState } from 'react'
 import useModalize from '../../components/hooks/useModalize'
-import { useTheme } from 'styled-components'
-import useAnimationInputSearch from './useAnimationInputSearch'
-import { Container, InputSearch } from './style'
+// import { useTheme } from 'styled-components'
+// import useAnimationInputSearch from './useAnimationInputSearch'
+// import { Container, InputSearch } from './style'
 import Header from './Header'
 import { FlashList } from '@shopify/flash-list'
 import Thought from '../../components/Thought'
@@ -16,9 +16,9 @@ interface IProps {
 }
 
 const ListThoughts: FC<IProps> = ({ group, thoughts, next }) => {
-    const [search, setSearch] = useState('')
-    const animationInputSearch = useAnimationInputSearch()
-    const theme = useTheme()
+    // const [search, setSearch] = useState('')
+    // const animationInputSearch = useAnimationInputSearch()
+    // const theme = useTheme()
     const { modalize: modalizeOptions, props: propsOptions } = useModalize(90, 70, true)
     const [thoughtSelected, setThoughtSelected] = useState<IThought>()
 
@@ -29,8 +29,8 @@ const ListThoughts: FC<IProps> = ({ group, thoughts, next }) => {
     }
 
     return (
-        <Container>
-            <Header group={group}/>
+        <>
+            
             {/* <InputSearch
                 value={search}
                 autoCapitalize="words"
@@ -44,28 +44,26 @@ const ListThoughts: FC<IProps> = ({ group, thoughts, next }) => {
             <FlashList
                 data={thoughts}
                 // extraData={search}
+                ListHeaderComponent={<Header group={group}/>}
                 estimatedItemSize={70}
-                renderItem={({ index, item }) => {
+                renderItem={({ index, item }) => (
                     /*
                     if (item.name.toUpperCase().includes(search.toUpperCase())) {
                         
                     }
                     */
-
-                    if (group ? item.group === group : !item.group) {
-                        return (
-                            <Thought
-                                next={next}
-                                index={index}
-                                thought={item}
-                                onLongPress={() => handleLongPress(item)}
-                            />
-                        )
-                    }
-                }}
+                    (group ? item.group === group : !item.group) && (
+                        <Thought
+                            next={next}
+                            index={index}
+                            thought={item}
+                            onLongPress={() => handleLongPress(item)}
+                        />
+                    )
+                )}
             />
             <ModalizeGroupOptionsThought next={next} propsOptions={propsOptions} thoughtSelected={thoughtSelected}/>
-        </Container>
+        </>
     )
 }
 
